@@ -64,7 +64,7 @@ public class DataLoader {
 				while ((line = file.readLine()) != null) {
 					String [] monsterData = line.split(",");
 					String monsterType = monsterData[0];
-					Role role = Role.valueOf(monsterData[3]);
+					Role role = (monsterData[3].equals("SCARER"))? Role.SCARER : Role.LAUGHER;
 					if (monsterType.equals("DYNAMO"))
 						monsters.add(new Dynamo(monsterData[1], monsterData[2] ,role, Integer.parseInt(monsterData[4])));
 					else if (monsterType.equals("DASHER"))

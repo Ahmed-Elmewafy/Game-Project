@@ -16,16 +16,16 @@ public class Board {
 	public void setStationedMonsters(ArrayList<Monster> stationedMonsters) {
 		this.stationedMonsters = stationedMonsters;
 	}
-	public ArrayList<Card> getCards() {
+	public static ArrayList<Card> getCards() {
 		return cards;
 	}
-	public void setCards(ArrayList<Card> cards) {
-		this.cards = cards;
+	public static void setCards(ArrayList<Card> cardsP) {
+		cards = cardsP;
 	}
 	public Cell[][] getBoardCells() {
 		return boardCells;
 	}
-	public ArrayList<Card> getOriginalCards() {
+	public static ArrayList<Card> getOriginalCards() {
 		return originalCards;
 	}
 	public Board(ArrayList<Card> readCards) {

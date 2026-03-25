@@ -1,6 +1,6 @@
 package game.engine.monsters;
 import game.engine.Role;
-public abstract class Monster implements Comparable {
+public abstract class Monster implements Comparable <Monster> {
 	private String name;
 	private String description;
 	private Role role;
@@ -15,6 +15,7 @@ public abstract class Monster implements Comparable {
 		this.name = name;
 		this.description = description;
 		this.originalRole = originalRole;
+		this.role = originalRole;
 		this.energy = energy;
 	}
 
