@@ -1,5 +1,4 @@
 package game.engine;
-import game.engine.Constants;
 import game.engine.cards.Card;
 import game.engine.cells.*;
 import game.engine.monsters.Monster;
@@ -7,10 +6,9 @@ import java.util.ArrayList;
 public class Board {
 
 	private Cell[][] boardCells;
-	private static ArrayList<Monster> stationedMonsters;
-	private static ArrayList<Card> originalCards;
-	private static ArrayList<Card> cards;
-	
+	private ArrayList<Monster> stationedMonsters;
+	private ArrayList<Card> originalCards;
+	private ArrayList<Card> cards;
 	
 	public ArrayList<Monster> getStationedMonsters() {
 		return stationedMonsters;
