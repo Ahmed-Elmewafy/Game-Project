@@ -10,11 +10,11 @@ public class Board {
 	private static ArrayList<Card> originalCards;
 	public static ArrayList<Card> cards;
 	
-	public ArrayList<Monster> getStationedMonsters() {
+	public static ArrayList<Monster> getStationedMonsters() {
 		return stationedMonsters;
 	}
-	public void setStationedMonsters(ArrayList<Monster> stationedMonsters) {
-		this.stationedMonsters = stationedMonsters;
+	public static void setStationedMonsters(ArrayList<Monster> stationedMonstersP) {
+		stationedMonsters = stationedMonstersP;
 	}
 	public static ArrayList<Card> getCards() {
 		return cards;

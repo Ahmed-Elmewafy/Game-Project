@@ -17,6 +17,10 @@ public abstract class Monster implements Comparable <Monster> {
 		this.originalRole = originalRole;
 		this.role = originalRole;
 		this.energy = energy;
+		position = 0;
+		frozen = false;
+		shielded = false;
+		confusionTurns = 0;
 	}
 
 	public Role getRole() {
@@ -90,6 +94,6 @@ public abstract class Monster implements Comparable <Monster> {
 	
 	public int compareTo(Monster o)
 	{
-		return position - this.position;
+		return this.position - o.position;
 	}
 }

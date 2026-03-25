@@ -25,7 +25,7 @@ public class Game {
 		Monster random;	
 		do {
 		random	= allMonsters.get((int)(Math.random()*allMonsters.size()));
-		} while (random.getOriginalRole() != role);
+		} while (random.getRole() != role);
 		return random;
 	}
 	public Board getBoard() {
