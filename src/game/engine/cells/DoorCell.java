@@ -1,18 +1,19 @@
 package game.engine.cells;
 import game.engine.Role;
-public class DoorCell extends Cell {
+import game.engine.interfaces.*;
+public class DoorCell extends Cell implements CanisterModifier {
 	private Role role;
 	private int energy;
 	private boolean activated;
 
-	public DoorCell(String name, Role role, int energy) {
+	public DoorCell(String name, Role role, int energy){
 		super(name);
 		this.role = role;
 		this.energy = energy;
 		this.activated = false;
 	}
 
-	public boolean getActivated() {
+	public boolean isActivated() {
 		return activated;
 	}
 

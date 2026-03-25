@@ -1,6 +1,6 @@
 package game.engine.monsters;
 import game.engine.Role;
-public abstract class Monster {
+public abstract class Monster implements Comparable {
 	private String name;
 	private String description;
 	private Role role;
@@ -31,7 +31,9 @@ public abstract class Monster {
 	}
 
 	public void setEnergy(int energy) {
+		if (energy >= 0)
 		this.energy = energy;
+		else this.energy = 0;
 	}
 
 	public int getPosition() {
@@ -39,7 +41,14 @@ public abstract class Monster {
 	}
 
 	public void setPosition(int position) {
-		this.position = position;
+		if (position < 0)
+			this.position = 0;
+		else if (position > 99)
+			this.position = (position - 99) - 1;
+		else 
+			this.position = position;
+			
+		
 	}
 
 	public boolean isFrozen() {
@@ -80,6 +89,6 @@ public abstract class Monster {
 	
 	public int compareTo(Monster o)
 	{
-		return this.position - o.position;
+		return position - this.position;
 	}
 }

@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class Board {
 
 	private Cell[][] boardCells;
-	private ArrayList<Monster> stationedMonsters;
-	private ArrayList<Card> originalCards;
-	private ArrayList<Card> cards;
+	private static ArrayList<Monster> stationedMonsters;
+	private static ArrayList<Card> originalCards;
+	public static ArrayList<Card> cards;
 	
 	public ArrayList<Monster> getStationedMonsters() {
 		return stationedMonsters;
