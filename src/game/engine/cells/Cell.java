@@ -22,5 +22,14 @@ public class Cell  {
 		this.monster = monster;
 	}
 	
-	
+	public boolean isOccupied()
+	{
+		return getMonster() != null; 
+	}
+
+	public void onLand(Monster landingMonster, Monster opponentMonster)
+	{
+		monster = landingMonster;
+		
+	}	
 }

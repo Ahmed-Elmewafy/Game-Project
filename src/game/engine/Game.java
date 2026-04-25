@@ -3,6 +3,8 @@ import java.util.*;
 import game.engine.monsters.*; 
 import game.engine.dataloader.*; 
 import java.io.*;
+import game.engine.exceptions.*;
+import game.engine.*;
 public class Game {
 	private Board board;
 	private ArrayList<Monster> allMonsters= new ArrayList<>();
@@ -47,5 +49,27 @@ public class Game {
 	public void setCurrent(Monster current)
 	{
 		this.current = current;
+	}
+
+	public void usePowerUp() throws OutOfEnergyException
+	{
+		if (current.getEnergy() >= Constants.POWERUP_COST)
+		{
+			current.setEnergy(current.getEnergy() - Constants.POWERUP_COST);
+			current.executePowerUpEffect();
+		}
+		else
+			throw new OutOfEnergyException() ;
+	}
+	
+	public void playTurn()
+	{
+		if (current.isFrozen())
+			current.setFrozen(false);
+		else
+			current.move(rollDice());
+			
+		switchTurn();
+		
 	}
 }
