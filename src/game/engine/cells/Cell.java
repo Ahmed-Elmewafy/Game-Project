@@ -1,19 +1,20 @@
 package game.engine.cells;
-import game.engine.monsters.*;
-public class Cell  {
+
+import game.engine.monsters.Monster;
+
+public class Cell {
 	private String name;
-	private Monster monster;
+	private Monster monster; 
 	
 	public Cell(String name) {
 		this.name = name;
 		this.monster = null;
-		
 	}
 
 	public String getName() {
 		return name;
 	}
-
+	
 	public Monster getMonster() {
 		return monster;
 	}
@@ -21,6 +22,5 @@ public class Cell  {
 	public void setMonster(Monster monster) {
 		this.monster = monster;
 	}
-	
-	
+
 }
