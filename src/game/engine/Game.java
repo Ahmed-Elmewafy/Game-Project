@@ -1,9 +1,7 @@
 package game.engine;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import game.engine.dataloader.DataLoader;
 import game.engine.monsters.*;
 
@@ -56,4 +54,36 @@ public class Game {
 	    		.orElse(null);
 	}
 	
+	private Monster getCurrentOpponent() {
+		if (this.current == this.player)
+			return this.opponent;;
+			return this.player;
+	}
+	
+	 private int rollDice() {
+		 return (int)(Math.random() * 6) + 1;
+	 }
+	
+	 private void switchTurn() {
+		 if (this.current == this.player) {
+		        this.current = this.opponent;
+		    } else {
+		        this.current = this.player;
+		    }
+	 }
+	 
+	 private boolean checkWinCondition(Monster monster) {
+		 if (monster.getEnergy() == 1000 && monster.getPosition() == 99)
+			 return true;
+		 	 return false;
+	 }
+	
+	 public Monster getWinner() {
+		 if (this.checkWinCondition(this.player))
+			 return this.player;
+		 if(this.checkWinCondition(this.opponent))
+			 return this.opponent;
+		 else 
+			 return null;
+	 }
 }

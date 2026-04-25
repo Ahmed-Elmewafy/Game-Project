@@ -1,4 +1,5 @@
 package game.engine.cards;
+import game.engine.monsters.*;
 
 public class ShieldCard extends Card {
 	
@@ -6,4 +7,10 @@ public class ShieldCard extends Card {
 		super(name, description, rarity, true); 
 	}
 
-}
+	public void performAction(Monster player, Monster opponent) {
+		player.setShielded(true);
+		opponent.setShielded(false);
+		}
+	}
+	
+

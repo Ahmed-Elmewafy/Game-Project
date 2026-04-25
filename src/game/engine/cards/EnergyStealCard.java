@@ -1,5 +1,5 @@
 package game.engine.cards;
-
+import game.engine.monsters.*;
 import game.engine.interfaces.CanisterModifier;
 
 public class EnergyStealCard extends Card implements CanisterModifier {
@@ -13,5 +13,10 @@ public class EnergyStealCard extends Card implements CanisterModifier {
 	public int getEnergy() {
 		return energy;
 	}
+	
+
+	
+	
+	
 	
 }
