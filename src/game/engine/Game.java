@@ -86,4 +86,25 @@ public class Game {
 		 else 
 			 return null;
 	 }
+
+	 public void usePowerUp() throws OutOfEnergyException
+		{
+			if (current.getEnergy() >= Constants.POWERUP_COST)
+			{
+				current.setEnergy(current.getEnergy() - Constants.POWERUP_COST);
+				current.executePowerUpEffect();
+			}
+			else
+				throw new OutOfEnergyException() ;
+		}
+		
+		public void playTurn()
+		{
+			if (current.isFrozen())
+				current.setFrozen(false);
+			else
+				current.move(rollDice());
+				
+			switchTurn();
+
 }
