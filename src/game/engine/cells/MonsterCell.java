@@ -15,21 +15,15 @@ public class MonsterCell extends Cell {
 	public void onLand (Monster landingMonster, Monster opponentMonster)
 	{
 		if (getCellMonster().getRole() == landingMonster.getRole())
-			landingMonster.executePowerUpEffect();
+			landingMonster.executePowerupEffect(opponentMonster);
 		else
 			if (landingMonster.getEnergy() > getCellMonster().getEnergy())
 			{
-				if (landingMonster.isShielded())
-				{
-					int replacedEnergy;
-					replacedEnergy = landingMonster.getEnergy();
-					landingMonster.setEnergy(cellMonster.getEnergy());
-					cellMonster.setEnergy(replacedEnergy);	
-				}
-				else 
-					cellMonster.setEnergy(landingMonster.getEnergy());		
-			}
+				int replacedEnergy = landingMonster.getEnergy();
+				landingMonster.alterEnergy(-cellMonster.getEnergy());
+				cellMonster.setEnergy(replacedEnergy);		
 				
+			}
 	}
 
 }

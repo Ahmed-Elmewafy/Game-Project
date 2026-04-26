@@ -22,6 +22,11 @@ public class Game {
 		this.player = selectRandomMonsterByRole(playerRole);
 		this.opponent = selectRandomMonsterByRole(playerRole == Role.SCARER ? Role.LAUGHER : Role.SCARER);
 		this.current = player;
+		allMonsters.remove(player);
+		allMonsters.remove(opponent);
+		board.setStationedMonsters(allMonsters);
+		board.initializeBoard();
+	
 	}
 	
 	public Board getBoard() {
@@ -94,7 +99,7 @@ public class Game {
 			if (current.getEnergy() >= Constants.POWERUP_COST)
 			{
 				current.setEnergy(current.getEnergy() - Constants.POWERUP_COST);
-				current.executePowerUpEffect();
+				current.executePowerupEffect(getCurrentOpponent());
 			}
 			else
 				throw new OutOfEnergyException() ;
@@ -108,5 +113,5 @@ public class Game {
 				current.move(rollDice());
 				
 			switchTurn();
-
+		}
 }
