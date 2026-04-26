@@ -1,75 +1,89 @@
 package game.engine;
-import java.util.*; 
-import game.engine.monsters.*; 
-import game.engine.dataloader.*; 
-import java.io.*;
-import game.engine.exceptions.*;
-import game.engine.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import game.engine.dataloader.DataLoader;
+import game.engine.monsters.*;
+
 public class Game {
 	private Board board;
-	private ArrayList<Monster> allMonsters= new ArrayList<>();
+	private ArrayList<Monster> allMonsters; 
 	private Monster player;
 	private Monster opponent;
 	private Monster current;
 	
-	public Game (Role playerRole) throws IOException
-	{
-		board = new Board (DataLoader.readCards());
-		allMonsters = DataLoader.readMonsters();
-		player = selectRandomMonsterByRole(playerRole);
-		Role oppositeRole = (playerRole == Role.SCARER)? Role.LAUGHER: Role.SCARER ;
-		opponent = selectRandomMonsterByRole(oppositeRole); 
-		current = player;
+	public Game(Role playerRole) throws IOException {
+		this.board = new Board(DataLoader.readCards());
+		
+		this.allMonsters = DataLoader.readMonsters();
+		
+		this.player = selectRandomMonsterByRole(playerRole);
+		this.opponent = selectRandomMonsterByRole(playerRole == Role.SCARER ? Role.LAUGHER : Role.SCARER);
+		this.current = player;
 	}
 	
-	
-	private Monster selectRandomMonsterByRole(Role role) {
-		Monster random;	
-		do {
-		random	= allMonsters.get((int)(Math.random()*allMonsters.size()));
-		} while (random.getRole() != role);
-		return random;
-	}
 	public Board getBoard() {
 		return board;
 	}
-	public ArrayList <Monster> getAllMonsters() {
-		return allMonsters;
+	
+	public ArrayList<Monster> getAllMonsters() {
+		return allMonsters; 
 	}
+	
 	public Monster getPlayer() {
 		return player;
 	}
+	
 	public Monster getOpponent() {
 		return opponent;
 	}
+	
 	public Monster getCurrent() {
 		return current;
 	}
-
-	public void setCurrent(Monster current)
-	{
+	
+	public void setCurrent(Monster current) {
 		this.current = current;
 	}
-
-	public void usePowerUp() throws OutOfEnergyException
-	{
-		if (current.getEnergy() >= Constants.POWERUP_COST)
-		{
-			current.setEnergy(current.getEnergy() - Constants.POWERUP_COST);
-			current.executePowerUpEffect();
-		}
-		else
-			throw new OutOfEnergyException() ;
+	
+	private Monster selectRandomMonsterByRole(Role role) {
+		Collections.shuffle(allMonsters);
+	    return allMonsters.stream()
+	    		.filter(m -> m.getRole() == role)
+	    		.findFirst()
+	    		.orElse(null);
 	}
 	
-	public void playTurn()
-	{
-		if (current.isFrozen())
-			current.setFrozen(false);
-		else
-			current.move(rollDice());
-			
-		switchTurn();
-		
+	private Monster getCurrentOpponent() {
+		if (this.current == this.player)
+			return this.opponent;;
+			return this.player;
 	}
+	
+	 private int rollDice() {
+		 return (int)(Math.random() * 6) + 1;
+	 }
+	
+	 private void switchTurn() {
+		 if (this.current == this.player) {
+		        this.current = this.opponent;
+		    } else {
+		        this.current = this.player;
+		    }
+	 }
+	 
+	 private boolean checkWinCondition(Monster monster) {
+		 if (monster.getEnergy() == 1000 && monster.getPosition() == 99)
+			 return true;
+		 	 return false;
+	 }
+	
+	 public Monster getWinner() {
+		 if (this.checkWinCondition(this.player))
+			 return this.player;
+		 if(this.checkWinCondition(this.opponent))
+			 return this.opponent;
+		 else 
+			 return null;
+	 }
 }
