@@ -1,4 +1,5 @@
 package game.engine.cells;
+import game.engine.monsters.Monster;
 
 public class ConveyorBelt extends TransportCell{
 	
@@ -6,4 +7,8 @@ public class ConveyorBelt extends TransportCell{
 		super(name , Math.abs(effect));
 	}
 
+	public void onLand (Monster landingMonster, Monster opponentMonster)
+	{
+		super.transport(landingMonster);
+	}
 }
