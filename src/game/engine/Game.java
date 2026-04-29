@@ -6,6 +6,7 @@ import game.engine.dataloader.DataLoader;
 import game.engine.monsters.*;
 import game.engine.exceptions.*;
 import game.engine.*;
+import game.engine.cells.*;
 
 public class Game {
 	private Board board;
@@ -25,7 +26,7 @@ public class Game {
 		allMonsters.remove(player);
 		allMonsters.remove(opponent);
 		board.setStationedMonsters(allMonsters);
-		board.initializeBoard();
+		board.initializeBoard(DataLoader.readCells());
 	
 	}
 	
