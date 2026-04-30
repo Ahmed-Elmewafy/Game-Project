@@ -106,13 +106,12 @@ public class Game {
 				throw new OutOfEnergyException() ;
 		}
 		
-		public void playTurn()
-		{
-			if (current.isFrozen())
-				current.setFrozen(false);
-			else
-				current.move(rollDice());
-				
-			switchTurn();
+	 public void playTurn() throws InvalidMoveException {
+		    if (current.isFrozen()) {
+		        current.setFrozen(false);
+		    } else {
+		        board.moveMonster(current, rollDice(), getCurrentOpponent());
+		    }
+		    switchTurn();
 		}
 }
