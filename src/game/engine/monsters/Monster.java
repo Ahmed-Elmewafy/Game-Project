@@ -1,5 +1,5 @@
 package game.engine.monsters;
-
+import game.engine.*;
 import game.engine.Constants;
 import game.engine.Role;
 
@@ -101,14 +101,18 @@ public abstract class Monster implements Comparable<Monster> {
 	}
 
 	public void move(int distance) {
-		this.position += distance;
+
+		if((this.position + distance) >= 100)
+			this.position = ((this.position - 100) + distance);
+		else if ((this.position + distance) < 99)
+			this.position += distance;
 	}
 	
 	public final void alterEnergy(int energy) {
-		if (this.shielded && energy < 0) 
-            this.shielded = false;
+		if (this.isShielded() && energy < 0) 
+            this.setShielded(false);
         else 
-        setEnergy(this.energy + energy);
+        this.setEnergy(this.getEnergy() + energy);
 	}
 	
 	public void decrementConfusion() {

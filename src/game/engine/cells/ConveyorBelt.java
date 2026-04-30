@@ -7,8 +7,4 @@ public class ConveyorBelt extends TransportCell{
 		super(name , Math.abs(effect));
 	}
 
-	public void onLand (Monster landingMonster, Monster opponentMonster)
-	{
-		super.transport(landingMonster);
-	}
 }
