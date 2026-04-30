@@ -23,7 +23,7 @@ public class ConfusionCard extends Card {
 	}
 	
 	private void swapMonsterRole(Monster target) {
-        if (target.getRole() == Role.SCARER) 
+        if (target.getOriginalRole() == Role.SCARER) 
             target.setRole(Role.LAUGHER);
         else 
             target.setRole(Role.SCARER);
