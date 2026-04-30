@@ -18,8 +18,8 @@ public class ConfusionCard extends Card {
 		player.setConfusionTurns(this.getDuration());
         opponent.setConfusionTurns(this.getDuration());
         
-        swapMonsterRole(player);
-        swapMonsterRole(opponent);
+        this.swapMonsterRole(player);
+        this.swapMonsterRole(opponent);
 	}
 	
 	private void swapMonsterRole(Monster target) {
