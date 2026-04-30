@@ -20,7 +20,6 @@ public class Schemer extends Monster {
 		int totalStolen = 0;
     	totalStolen += stealEnergyFrom(opponentMonster);
     	for (Monster monster : allMonsters )
-    		if (monster.getRole() == opponentMonster.getRole())
     			totalStolen += stealEnergyFrom(monster);
         if (totalStolen > 0) {
         this.alterEnergy(totalStolen); 
