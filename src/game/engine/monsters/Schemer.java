@@ -28,8 +28,11 @@ public class Schemer extends Monster {
 	public void setEnergy(int energy) {
         int change = energy - this.getEnergy();
         if (change != 0) {
-            super.setEnergy(this.getEnergy() + change + 10);
+            super.setEnergy(this.getEnergy() + change + Constants.SCHEMER_STEAL);
         }
+        else
+        	  super.setEnergy(energy);
+        
         }
 	
 	
