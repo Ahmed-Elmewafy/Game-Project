@@ -39,60 +39,88 @@ public class Board {
 		reloadCards();
 	}
 	private int[] indexToRowCol(int index) {
-		int[] coordinate= {0,0};
-		int count=0;
-		for(int i=9 ; i>=0 ; i--) {
-			if(index/10==i) {
-				coordinate[0]=count;
-				break;
-			}
-			else
-				count++;
-		}
-		if(count%2==0) {
-			int jcount=0;
-			for(int j=9 ; j>=0 ; j--) {
-				if(index%10==j) {
-					coordinate[1]=jcount;
-					break;
-				}
-				else
-					jcount++;
-			}
-		}
-		else {
-			for(int k=0 ; k<=9 ; k++) {
-				if(index%10==k)
-					coordinate[1]=k;
-			}
-		}
-		return coordinate;
+	    int row = index / 10;
+	    int col;
+	    if (row % 2 == 0) {
+	        col = index % 10;
+	    } else {
+	        col = 9 - (index % 10);
+	    }
+	    return new int[]{row, col};
 	}
 	private Cell getCell(int index) {
-		Cell [][] cells = getBoardCells();
-		return cells[indexToRowCol(index)[0]][indexToRowCol(index)[1]];
+		int [] position=indexToRowCol(index);
+		return boardCells[position[0]][position[1]];
 	}
 	private void setCell(int index , Cell cell) {
-		cell=getCell(index);
+		int[] indx=indexToRowCol(index);
+		boardCells[indx[0]][indx[1]]=cell;
 	}
 	public void initializeBoard(ArrayList<Cell> specialCells) {
-		for(int i=0 ; i<100 ; i++) {
-			setCell(i, new Cell("Corridor"));
-		}
-		int doorIndex=0;
-		for(int i=1 ; i<100 ; i+=2) {
-			setCell(i, specialCells.get(doorIndex++));
-		}
-		for (int i = 0; i < Constants.CONVEYOR_CELL_INDICES.length; i++) {
-	        setCell(Constants.CONVEYOR_CELL_INDICES[i], specialCells.get(50 + i));
-	    }
-		for (int i = 0; i < Constants.SOCK_CELL_INDICES.length; i++) {
-	        setCell(Constants.SOCK_CELL_INDICES[i], specialCells.get(55 + i));
-	    }
-	    for (int idx : Constants.CARD_CELL_INDICES) {
-	        setCell(idx, new CardCell("Card Station"));
-	    }
-	}
+
+ArrayList<Cell> doorcells = new ArrayList<>();
+ArrayList<Cell> conveyorcells = new ArrayList<>();
+ArrayList<Cell> sockcells = new ArrayList<>();
+
+HashSet<Integer> monsterIdx = new HashSet<>();
+HashSet<Integer> cardIdx = new HashSet<>();
+HashSet<Integer> conveyorIdx = new HashSet<>();
+HashSet<Integer> sockIdx = new HashSet<>();
+
+for (int i : Constants.MONSTER_CELL_INDICES) monsterIdx.add(i);
+for (int i : Constants.CARD_CELL_INDICES) cardIdx.add(i);
+for (int i : Constants.CONVEYOR_CELL_INDICES) conveyorIdx.add(i);
+for (int i : Constants.SOCK_CELL_INDICES) sockIdx.add(i);
+
+for (Cell c : specialCells) {
+if (c instanceof DoorCell) {
+doorcells.add(c);
+
+} else if (c instanceof ConveyorBelt) {
+conveyorcells.add(c);
+} else if (c instanceof ContaminationSock) {
+sockcells.add(c);
+}
+}
+
+int monsterPointer = 0;
+int cardPointer = 0;
+
+for (int i = 0; i < Constants.BOARD_SIZE; i++) {
+
+if (monsterIdx.contains(i)) {
+if (monsterPointer < stationedMonsters.size()) {
+Monster m = stationedMonsters.get(monsterPointer++);
+setCell(i, new MonsterCell(m.getName(), m));
+         m.setPosition(i);
+}
+
+} else if (cardIdx.contains(i)) {
+//              System.out.println("Carding here");
+//              System.out.println(originalCards.size());
+if (cardPointer < cards.size()) {
+Card c = cards.get(cardPointer++);
+setCell(i, new CardCell(c.getName()));
+}
+else{
+setCell(i, new CardCell("Card"));
+}
+
+} else if (conveyorIdx.contains(i) && !conveyorcells.isEmpty()) {
+setCell(i, conveyorcells.remove(0));
+
+} else if (sockIdx.contains(i) && !sockcells.isEmpty()) {
+setCell(i, sockcells.remove(0));
+
+} else if (i % 2 == 0) {
+setCell(i, new Cell("Normal " + i));
+
+} else if (!doorcells.isEmpty()) {
+setCell(i, doorcells.remove(0));
+}
+}
+}
+
 	private static void setCardsByRarity() {
 		ArrayList<Card>expanded=new ArrayList<>();
 		for(int i=0 ; i<getOriginalCards().size() ; i++) {
@@ -102,10 +130,12 @@ public class Board {
 			}
 		}
 		cards=expanded;
+		originalCards=expanded;
 	}
 	public static void reloadCards() {
-		ArrayList<Card>reloadedCards=cards;
+		ArrayList<Card>reloadedCards=originalCards;
 		Collections.shuffle(reloadedCards);
+		cards=reloadedCards;
 	}
 	public static Card drawCard() {
 		if(cards.size()>0) {
@@ -121,10 +151,14 @@ public class Board {
 	}
 	public void moveMonster(Monster currentMonster, int roll, Monster opponentMonster) throws InvalidMoveException{
 	int newPosition=currentMonster.getPosition()+roll;
+	int originalPosition=currentMonster.getPosition();
 	int initialConfusionP=currentMonster.getConfusionTurns();
 	int initialConfusionO=opponentMonster.getConfusionTurns();
-	if(newPosition==opponentMonster.getPosition()||newPosition>99) {
-		newPosition-=roll;
+	currentMonster.setPosition(newPosition);
+	getCell(newPosition).onLand(currentMonster,opponentMonster);
+	if(newPosition==opponentMonster.getPosition()) {
+		newPosition=originalPosition;
+		currentMonster.setPosition(newPosition);
 		throw new InvalidMoveException();
 		}
 	if(currentMonster.isConfused()&&initialConfusionP>0) {
@@ -133,22 +167,18 @@ public class Board {
 	if(opponentMonster.isConfused()&&initialConfusionO>0) {
 		opponentMonster.setConfusionTurns(opponentMonster.getConfusionTurns()-1);
 	}
-		getCell(newPosition).onLand(currentMonster,opponentMonster);
+		currentMonster.setPosition(newPosition);
+		opponentMonster.setPosition(opponentMonster.getPosition());
 		updateMonsterPositions(currentMonster,opponentMonster);
 	}
 	
 	
 	private void updateMonsterPositions(Monster player , Monster opponent) {
-		for(int i=0 ; i<100 ; i++) {
-			int[] position=indexToRowCol(i);
-			boardCells[position[0]][position[1]].setMonster(null);
-		}
-		getCell(player.getPosition()).setMonster(player);
-		getCell(opponent.getPosition()).setMonster(opponent);
-		for(int i=0 ; i<Constants.MONSTER_CELL_INDICES.length; i++) {
-			int idx = Constants.MONSTER_CELL_INDICES[i];
-	        Monster stationed = stationedMonsters.get(i);
-	        getCell(idx).setMonster(stationed);
-		}
+		for (int i = 0; i < Constants.BOARD_SIZE; i++) {
+	        int[] pos = indexToRowCol(i);
+	        boardCells[pos[0]][pos[1]].setMonster(null);
+	    }
+	    getCell(player.getPosition()).setMonster(player);
+	    getCell(opponent.getPosition()).setMonster(opponent);
 	}
 }
