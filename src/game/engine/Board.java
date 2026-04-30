@@ -96,8 +96,7 @@ setCell(i, new MonsterCell(m.getName(), m));
 }
 
 } else if (cardIdx.contains(i)) {
-//              System.out.println("Carding here");
-//              System.out.println(originalCards.size());
+
 if (cardPointer < cards.size()) {
 Card c = cards.get(cardPointer++);
 setCell(i, new CardCell(c.getName()));
@@ -163,9 +162,6 @@ setCell(i, doorcells.remove(0));
 		}
 	if(currentMonster.isConfused()&&initialConfusionP>0) {
 		currentMonster.setConfusionTurns(currentMonster.getConfusionTurns()-1);
-	}
-	if(opponentMonster.isConfused()&&initialConfusionO>0) {
-		opponentMonster.setConfusionTurns(opponentMonster.getConfusionTurns()-1);
 	}
 		currentMonster.setPosition(newPosition);
 		opponentMonster.setPosition(opponentMonster.getPosition());
