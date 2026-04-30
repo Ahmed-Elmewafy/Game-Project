@@ -16,5 +16,5 @@ public abstract class TransportCell extends Cell{
 	{
 		monster.setPosition(monster.getPosition()+getEffect());
 	}
-		
+
 }

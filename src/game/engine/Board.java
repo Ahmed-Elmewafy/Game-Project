@@ -58,68 +58,68 @@ public class Board {
 	}
 	public void initializeBoard(ArrayList<Cell> specialCells) {
 
-ArrayList<Cell> doorcells = new ArrayList<>();
-ArrayList<Cell> conveyorcells = new ArrayList<>();
-ArrayList<Cell> sockcells = new ArrayList<>();
-
-HashSet<Integer> monsterIdx = new HashSet<>();
-HashSet<Integer> cardIdx = new HashSet<>();
-HashSet<Integer> conveyorIdx = new HashSet<>();
-HashSet<Integer> sockIdx = new HashSet<>();
-
-for (int i : Constants.MONSTER_CELL_INDICES) monsterIdx.add(i);
-for (int i : Constants.CARD_CELL_INDICES) cardIdx.add(i);
-for (int i : Constants.CONVEYOR_CELL_INDICES) conveyorIdx.add(i);
-for (int i : Constants.SOCK_CELL_INDICES) sockIdx.add(i);
-
-for (Cell c : specialCells) {
-if (c instanceof DoorCell) {
-doorcells.add(c);
-
-} else if (c instanceof ConveyorBelt) {
-conveyorcells.add(c);
-} else if (c instanceof ContaminationSock) {
-sockcells.add(c);
+	ArrayList<Cell> doorcells = new ArrayList<>();
+	ArrayList<Cell> conveyorcells = new ArrayList<>();
+	ArrayList<Cell> sockcells = new ArrayList<>();
+	
+	HashSet<Integer> monsterIdx = new HashSet<>();
+	HashSet<Integer> cardIdx = new HashSet<>();
+	HashSet<Integer> conveyorIdx = new HashSet<>();
+	HashSet<Integer> sockIdx = new HashSet<>();
+	
+	for (int i : Constants.MONSTER_CELL_INDICES) monsterIdx.add(i);
+	for (int i : Constants.CARD_CELL_INDICES) cardIdx.add(i);
+	for (int i : Constants.CONVEYOR_CELL_INDICES) conveyorIdx.add(i);
+	for (int i : Constants.SOCK_CELL_INDICES) sockIdx.add(i);
+	
+	for (Cell c : specialCells) {
+	if (c instanceof DoorCell) {
+	doorcells.add(c);
+	
+	} else if (c instanceof ConveyorBelt) {
+	conveyorcells.add(c);
+	} else if (c instanceof ContaminationSock) {
+	sockcells.add(c);
+	}
+	}
+	
+	int monsterPointer = 0;
+	int cardPointer = 0;
+	
+	for (int i = 0; i < Constants.BOARD_SIZE; i++) {
+	
+	if (monsterIdx.contains(i)) {
+	if (monsterPointer < stationedMonsters.size()) {
+	Monster m = stationedMonsters.get(monsterPointer++);
+	setCell(i, new MonsterCell(m.getName(), m));
+	         m.setPosition(i);
+	}
+	
+	} else if (cardIdx.contains(i)) {
+	
+	if (cardPointer < cards.size()) {
+	Card c = cards.get(cardPointer++);
+	setCell(i, new CardCell(c.getName()));
+	}
+	else{
+	setCell(i, new CardCell("Card"));
+	}
+	
+	} else if (conveyorIdx.contains(i) && !conveyorcells.isEmpty()) {
+	setCell(i, conveyorcells.remove(0));
+	
+	} else if (sockIdx.contains(i) && !sockcells.isEmpty()) {
+	setCell(i, sockcells.remove(0));
+	
+	} else if (i % 2 == 0) {
+	setCell(i, new Cell("Normal " + i));
+	
+	} else if (!doorcells.isEmpty()) {
+		setCell(i, doorcells.remove(0));
+		}
+	}
 }
-}
-
-int monsterPointer = 0;
-int cardPointer = 0;
-
-for (int i = 0; i < Constants.BOARD_SIZE; i++) {
-
-if (monsterIdx.contains(i)) {
-if (monsterPointer < stationedMonsters.size()) {
-Monster m = stationedMonsters.get(monsterPointer++);
-setCell(i, new MonsterCell(m.getName(), m));
-         m.setPosition(i);
-}
-
-} else if (cardIdx.contains(i)) {
-
-if (cardPointer < cards.size()) {
-Card c = cards.get(cardPointer++);
-setCell(i, new CardCell(c.getName()));
-}
-else{
-setCell(i, new CardCell("Card"));
-}
-
-} else if (conveyorIdx.contains(i) && !conveyorcells.isEmpty()) {
-setCell(i, conveyorcells.remove(0));
-
-} else if (sockIdx.contains(i) && !sockcells.isEmpty()) {
-setCell(i, sockcells.remove(0));
-
-} else if (i % 2 == 0) {
-setCell(i, new Cell("Normal " + i));
-
-} else if (!doorcells.isEmpty()) {
-setCell(i, doorcells.remove(0));
-}
-}
-}
-
+	
 	private static void setCardsByRarity() {
 		ArrayList<Card>expanded=new ArrayList<>();
 		for(int i=0 ; i<getOriginalCards().size() ; i++) {

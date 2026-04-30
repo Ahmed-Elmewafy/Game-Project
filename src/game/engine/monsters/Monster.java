@@ -105,10 +105,10 @@ public abstract class Monster implements Comparable<Monster> {
 	}
 	
 	public final void alterEnergy(int energy) {
-		if (isShielded() && energy < 0) 
-            setShielded(false);
+		if (this.isShielded() && energy < 0) 
+            this.setShielded(false);
         else 
-        setEnergy(getEnergy() + energy);
+        this.setEnergy(getEnergy() + energy);
 	}
 	
 	public void decrementConfusion() {
