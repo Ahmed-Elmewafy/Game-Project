@@ -18,7 +18,7 @@ public class ContaminationSock extends TransportCell implements CanisterModifier
 	}
 	public void onLand (Monster landingMonster, Monster opponentMonster)
 	{
-		this.transport(landingMonster);
+		super.onLand(landingMonster, opponentMonster);
 		this.modifyCanisterEnergy(landingMonster, -Constants.SLIP_PENALTY);
 	} 
 }
