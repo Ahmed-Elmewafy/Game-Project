@@ -25,6 +25,7 @@ public class Schemer extends Monster {
         this.alterEnergy(totalStolen); 
         }
     }
+	//Claude Opus 4.7 assisted us with the logic of the energy steal part	
 	public void setEnergy(int energy) {
 	    int change = energy - this.getEnergy();
 	    super.setEnergy(this.getEnergy() + change + Constants.SCHEMER_STEAL);

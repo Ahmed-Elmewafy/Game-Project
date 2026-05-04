@@ -29,7 +29,7 @@ public class Cell  {
 
 	public void onLand(Monster landingMonster, Monster opponentMonster)
 	{
-		monster = landingMonster;
+		this.monster = landingMonster;
 		
 	}	
 }

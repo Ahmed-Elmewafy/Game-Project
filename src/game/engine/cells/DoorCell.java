@@ -16,13 +16,7 @@ public class DoorCell extends Cell implements CanisterModifier {
 		this.activated = false;
 	}
 
-	public void modifyCanisterEnergy(Monster monster, int canisterValue)
-	{
-		monster.alterEnergy(canisterValue);
-		
-		
-	}
-	
+
 	public boolean isActivated() {
 		return activated;
 	}
@@ -39,6 +33,15 @@ public class DoorCell extends Cell implements CanisterModifier {
 		return energy;
 	}
 	
+	public void modifyCanisterEnergy(Monster monster, int canisterValue) {
+	    if (this.getRole() == monster.getRole())
+	        monster.alterEnergy(canisterValue);   
+	    else
+	        monster.alterEnergy(-canisterValue);  
+	}
+	
+	
+	
 	public void onLand (Monster landingMonster, Monster opponentMonster)
 	{
 		ArrayList<Boolean> shields = new ArrayList<>(); 
@@ -52,24 +55,27 @@ public class DoorCell extends Cell implements CanisterModifier {
 					if (monster.getRole() == landingMonster.getRole()) 
 						modifyCanisterEnergy(monster, this.getEnergy());
 				modifyCanisterEnergy(landingMonster, this.getEnergy());
-				this.setActivated(true);		
+				this.setActivated(true);	
+				landingMonster.setShielded(false);
 			}
-		
-			else 
-			{
-				for (Monster monster : stationedMonsters)
-					if (monster.getRole() == landingMonster.getRole()) 
-					{ 
-						shields.add(monster.isShielded());
-						modifyCanisterEnergy(monster,-this.getEnergy());;
-					}			
+//Claude Opus 4.7 assisted us with the logic with the else part 		
+			else {
+			    boolean landingWasShielded = landingMonster.isShielded();
+			    
+			    if (landingWasShielded) {
+			        landingMonster.setShielded(false);
+			    } else {
+			        for (Monster monster : stationedMonsters)
+			            if (monster.getRole() == landingMonster.getRole())
+			                modifyCanisterEnergy(monster, this.getEnergy());
+			        
+			        modifyCanisterEnergy(landingMonster, this.getEnergy());
+			        
+			        this.setActivated(true);
+			    }
+			}
 				
-				shields.add(landingMonster.isShielded());
-				modifyCanisterEnergy(landingMonster,-this.getEnergy());
-				if(shields.contains(false))
-					this.setActivated(true);		
 			}
 		
 		}
 	}
-}

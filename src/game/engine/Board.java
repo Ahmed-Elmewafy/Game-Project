@@ -132,7 +132,7 @@ setCell(i, doorcells.remove(0));
 		originalCards=expanded;
 	}
 	public static void reloadCards() {
-		ArrayList<Card>reloadedCards=originalCards;
+		ArrayList<Card> reloadedCards = new ArrayList<>(originalCards);
 		Collections.shuffle(reloadedCards);
 		cards=reloadedCards;
 	}
@@ -149,15 +149,13 @@ setCell(i, doorcells.remove(0));
 		}
 	}
 	public void moveMonster(Monster currentMonster, int roll, Monster opponentMonster) throws InvalidMoveException{
-	int newPosition=currentMonster.getPosition()+roll;
 	int originalPosition=currentMonster.getPosition();
+	int newPosition=currentMonster.getPosition()+roll;
 	int initialConfusionP=currentMonster.getConfusionTurns();
-	int initialConfusionO=opponentMonster.getConfusionTurns();
 	currentMonster.setPosition(newPosition);
 	getCell(newPosition).onLand(currentMonster,opponentMonster);
 	if(newPosition==opponentMonster.getPosition()) {
-		newPosition=originalPosition;
-		currentMonster.setPosition(newPosition);
+		currentMonster.setPosition(originalPosition);
 		throw new InvalidMoveException();
 		}
 	if(currentMonster.isConfused()&&initialConfusionP>0) {

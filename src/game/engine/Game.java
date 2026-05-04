@@ -14,7 +14,6 @@ public class Game {
 	private Monster player;
 	private Monster opponent;
 	private Monster current;
-	
 	public Game(Role playerRole) throws IOException {
 		this.board = new Board(DataLoader.readCards());
 		
@@ -106,13 +105,12 @@ public class Game {
 				throw new OutOfEnergyException() ;
 		}
 		
-		public void playTurn()
-		{
-			if (current.isFrozen())
-				current.setFrozen(false);
-			else
-				current.move(rollDice());
-				
-			switchTurn();
+	 public void playTurn() throws InvalidMoveException {
+		    if (current.isFrozen()) {
+		        current.setFrozen(false);
+		    } else {
+		        board.moveMonster(current, rollDice(), getCurrentOpponent());
+		    }
+		    switchTurn();
 		}
 }

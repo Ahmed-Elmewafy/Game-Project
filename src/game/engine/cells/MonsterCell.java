@@ -14,6 +14,7 @@ public class MonsterCell extends Cell {
 
 	public void onLand (Monster landingMonster, Monster opponentMonster)
 	{
+		super.onLand(landingMonster, opponentMonster);
 		if (getCellMonster().getRole() == landingMonster.getRole())
 			landingMonster.executePowerupEffect(opponentMonster);
 		else
