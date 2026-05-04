@@ -1,6 +1,7 @@
 package game.engine.cards;
-import game.engine.monsters.*;
+
 import game.engine.interfaces.CanisterModifier;
+import game.engine.monsters.Monster;
 
 public class EnergyStealCard extends Card implements CanisterModifier {
 	private int energy;
@@ -13,20 +14,27 @@ public class EnergyStealCard extends Card implements CanisterModifier {
 	public int getEnergy() {
 		return energy;
 	}
-	
-	public void performAction(Monster player, Monster opponent) {
-		int actualStolen = 0; 
 
-	    if (!opponent.isShielded()) { 
-	        actualStolen = Math.min(this.getEnergy(), opponent.getEnergy()); 
+	@Override
+	public void performAction(Monster player, Monster opponent) {
+		int opponentEnergyBefore = opponent.getEnergy();
+		
+	    int toSteal = Math.min(this.getEnergy(), opponentEnergyBefore);
+
+	    modifyCanisterEnergy(opponent, -toSteal);
+
+	    if (opponent.getEnergy() == opponentEnergyBefore) {
+	        System.out.println(opponent.getName() + "'s shield blocked the energy steal!");
+	        return;
 	    }
-	    this.modifyCanisterEnergy(opponent, -this.getEnergy()); 
-	    this.modifyCanisterEnergy(player, actualStolen);
+
+	    modifyCanisterEnergy(player, toSteal);
+	    System.out.println(player.getName() + " stole " + toSteal + " energy from " + opponent.getName() + "!");
 	}
 	
+	@Override
 	public void modifyCanisterEnergy(Monster monster, int canisterValue) {
 		monster.alterEnergy(canisterValue);
 	}
-	
 	
 }

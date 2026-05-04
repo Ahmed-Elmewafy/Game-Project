@@ -1,7 +1,8 @@
 package game.engine.monsters;
 
-import game.engine.Role;
 import game.engine.Constants;
+import game.engine.Role;
+
 public class MultiTasker extends Monster {
 	private int normalSpeedTurns;
 	
@@ -9,35 +10,36 @@ public class MultiTasker extends Monster {
 		super(name, description, role, energy);
 		this.normalSpeedTurns = 0;
 	}
-
+	
 	public int getNormalSpeedTurns() {
 		return normalSpeedTurns;
 	}
-
+	
 	public void setNormalSpeedTurns(int normalSpeedTurns) {
 		this.normalSpeedTurns = normalSpeedTurns;
 	}
+
+	@Override
+	public void executePowerupEffect(Monster opponentMonster) {
+		this.setNormalSpeedTurns(2);
+		System.out.println(getName() + " activated Focus Mode! Normal speed for 2 turns!");
+	}
 	
-	public void move(int distance) {
-	    if (this.normalSpeedTurns > 0) {
-	        super.move(distance);
-	        this.normalSpeedTurns--;
-	    } else {
-	        super.move(distance / 2);
-	    }
+	@Override
+	public void setEnergy(int energy) {
+		super.setEnergy(energy + Constants.MULTITASKER_BONUS);
 	}
 
-	public void executePowerupEffect(Monster opponentMonster) {
-        this.normalSpeedTurns = 2;
+	@Override
+	public void move(int distance) {
+		if (getNormalSpeedTurns() > 0) {
+			System.out.println(getName() + " using Focus Mode! (" + normalSpeedTurns + " turns left)");
+            setNormalSpeedTurns(getNormalSpeedTurns()-1);
+	    } 
+		
+		else 
+	        distance /= 2;
+	    
+	    super.move(distance);
 	}
-	
-	public void setEnergy(int energy) {
-	     int change = energy - this.getEnergy();
-	        if (change != 0) {
-	            super.setEnergy(this.getEnergy() + change + Constants.MULTITASKER_BONUS);
-    }
-	
-	}
-	
-	
 }

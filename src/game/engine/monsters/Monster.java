@@ -1,5 +1,5 @@
 package game.engine.monsters;
-import game.engine.*;
+
 import game.engine.Constants;
 import game.engine.Role;
 
@@ -87,36 +87,38 @@ public abstract class Monster implements Comparable<Monster> {
 		this.confusionTurns = confusionTurns;
 	}
 
+	public abstract void executePowerupEffect(Monster opponentMonster);
+	
+	public boolean isConfused() {
+		return confusionTurns > 0;
+	}
+	
+	public void move(int distance) {
+		this.setPosition(this.getPosition() + distance);
+	}
+	
+	public final void alterEnergy(int energy) {
+		if (shielded && energy < 0) {
+			System.out.println(name + "'s shield blocked " + (-energy) + " damage!");
+			shielded = false; // Shield breaks after one use
+		}
+		
+		else 
+			this.setEnergy(this.getEnergy() + energy);	
+	}
+	
+	public void decrementConfusion() {
+		if (isConfused()) {
+			this.setConfusionTurns(this.getConfusionTurns() - 1);
+			
+			if(!isConfused())
+				this.setRole(originalRole);
+		}
+	}
+
 	@Override
 	public int compareTo(Monster other) {
 		return this.position - other.position;
 	}
-	
-	public abstract void  executePowerupEffect(Monster opponentMonster);
-	
-	public boolean isConfused() {
-		if(this.confusionTurns != 0)
-			return true;
-		return false;
-	}
 
-	public void move(int distance) {
-	    setPosition(this.position + distance);
-	}
-	
-	public final void alterEnergy(int energy) {
-		if (this.isShielded() && energy < 0) 
-            this.setShielded(false);
-        else 
-        this.setEnergy(this.getEnergy() + energy);
-	}
-	
-	public void decrementConfusion() {
-		if (this.confusionTurns > 0) {
-            this.confusionTurns--;
-            if (this.confusionTurns == 0) {
-                this.role = this.originalRole;
-            }
-	}
-	}
 }

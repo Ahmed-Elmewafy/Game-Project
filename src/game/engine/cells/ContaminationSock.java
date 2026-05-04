@@ -1,25 +1,27 @@
 package game.engine.cells;
-import game.engine.interfaces.*;
-import game.engine.*;
-import game.engine.monsters.*;
-public class ContaminationSock extends TransportCell implements CanisterModifier{
+
+import game.engine.Constants;
+import game.engine.interfaces.CanisterModifier;
+import game.engine.monsters.Monster;
+
+public class ContaminationSock extends TransportCell implements CanisterModifier {
 	
-	public ContaminationSock(String name, int effect)  {
-		super(name, (effect < 0)? effect: -effect);
+	public ContaminationSock(String name, int effect) {
+		super(name, effect);
 	}
-		
-	public void transport (Monster monster)
-	{
-		monster.setPosition(monster.getPosition()+getEffect());
+
+	@Override
+    public void transport(Monster monster) {
+		super.transport(monster);
+        
+        // Apply slip penalty
 		modifyCanisterEnergy(monster, -Constants.SLIP_PENALTY);
+    }
+
+	@Override
+	public void modifyCanisterEnergy(Monster monster, int canisterValue) {
+		monster.alterEnergy(canisterValue);
 	}
-	public void modifyCanisterEnergy(Monster monster, int canisterValue)
-	{
-		 	monster.alterEnergy(canisterValue);
-	}
-	public void onLand (Monster landingMonster, Monster opponentMonster)
-	{
-		super.onLand(landingMonster, opponentMonster);
-	} 
+
 }
-	
+
