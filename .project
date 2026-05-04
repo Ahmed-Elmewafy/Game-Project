@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/game/tests/Milestone2EdgeCaseTests.java</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Desktop/Milestone2EdgeCaseTests.java</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
