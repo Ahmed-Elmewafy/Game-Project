@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane minHeight="720.0" minWidth="1280.0" styleClass="background" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fill="#00aaff" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your side!">
+         <font>
+            <Font name="Calibri Bold" size="68.0" />
+         </font>
+      </Text>
+      <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Laugher" StackPane.alignment="BOTTOM_RIGHT">
+         <StackPane.margin>
+            <Insets right="50.0" />
+         </StackPane.margin>
+         <font>
+            <Font name="Arial Bold" size="40.0" />
+         </font>
+      </Text>
+      <Text fill="#339ebf" strokeType="OUTSIDE" strokeWidth="0.0" text="Scarer" StackPane.alignment="BOTTOM_LEFT">
+         <font>
+            <Font name="Arial Bold" size="40.0" />
+         </font>
+         <StackPane.margin>
+            <Insets left="50.0" />
+         </StackPane.margin>
+      </Text>
+   </children>
+</StackPane>

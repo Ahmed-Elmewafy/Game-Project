@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'MonstersIncFont'; 
+    src: url('../resources/fonts/Monster.ttf'); 
+}
+.background{
+	-fx-background-color: #0000ff;
+}
+
