@@ -1,8 +1,12 @@
 @font-face {
     font-family: 'MonstersIncFont'; 
-    src: url('../resources/fonts/Monster.ttf'); 
+    src: url('FuturaExtraBold.ttf'); 
 }
 .background{
-	-fx-background-color: #0000ff;
+	-fx-background-color: #9AB357;
+}
+
+.font{
+	-fx-font-family: 'MonstersIncFont';
 }
 
