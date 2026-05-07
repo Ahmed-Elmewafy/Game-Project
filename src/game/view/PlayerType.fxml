@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1e90ff;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="8.0" prefHeight="77.0" prefWidth="610.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You will play as:" wrappingWidth="583.37890625">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <Text fx:id="playerNameLabel" layoutX="196.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monster Name" wrappingWidth="209.13671875">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Icon fx:id="playerImageView" content="HELP_OUTLINE" layoutX="14.0" layoutY="71.0" prefHeight="233.0" prefWidth="287.0" />
+      <Text layoutX="313.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monster description:" wrappingWidth="272.9830722808838" />
+   </children>
+</Pane>
