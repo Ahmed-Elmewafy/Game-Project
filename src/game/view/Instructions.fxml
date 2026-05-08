@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <StackPane minHeight="720.0" minWidth="1280.0" stylesheets="@LoadingScreen.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
    <styleClass>
       <String fx:value="background" />
@@ -20,7 +19,7 @@
             <Insets />
          </StackPane.margin>
       </VBox>
-      <Text fill="#8bbe1b" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #8bbe1b;" text="The Challenge Awaits:" StackPane.alignment="TOP_LEFT">
+      <Text fill="#8bbe1b" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #8bbe1b;" text="The Challenge Awaits" StackPane.alignment="TOP_LEFT">
          <StackPane.margin>
             <Insets left="10.0" top="20.0" />
          </StackPane.margin>
@@ -33,7 +32,7 @@
             <Font size="27.0" />
          </font>
          <StackPane.margin>
-            <Insets left="10.0" top="100.0" />
+            <Insets left="20.0" top="100.0" />
          </StackPane.margin>
       </Text>
       <Text fill="#8bbe1b" strokeType="OUTSIDE" strokeWidth="0.0" text="Harness Your Power: Gather vital energy from active doors, but tread carefully! A wrong step could land you on a toxic 23-19 Contamination Sock, devastating your progress, while Conveyor Belts can rocket you ahead of the competition." wrappingWidth="873.8076171875" StackPane.alignment="TOP_LEFT">
@@ -41,7 +40,7 @@
             <Font size="27.0" />
          </font>
          <StackPane.margin>
-            <Insets left="10.0" top="180.0" />
+            <Insets left="20.0" top="180.0" />
          </StackPane.margin>
       </Text>
       <Text fill="#8bbe1b" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn the Tides: Strategy is everything. Spend 500 Energy to unleash your Monster’s unique Power-Up, or land on Card Cells to draw unpredictable effects that can steal your rival's energy, scramble their role, or freeze them in their tracks." wrappingWidth="873.8076171875" StackPane.alignment="TOP_LEFT">
@@ -49,7 +48,7 @@
             <Font size="27.0" />
          </font>
          <StackPane.margin>
-            <Insets left="10.0" top="330.0" />
+            <Insets left="20.0" top="330.0" />
          </StackPane.margin>
       </Text>
       <Text fill="#8bbe1b" strokeType="OUTSIDE" strokeWidth="0.0" text="The Ultimate Goal: It is a grueling battle of wits and luck. The first monster to survive the gauntlet, amass a staggering 1,000 Energy, and unlock Boo’s Door (Cell 99) will claim absolute victory and go down in Monsters, Inc. history!" wrappingWidth="873.8076171875" StackPane.alignment="TOP_LEFT">
