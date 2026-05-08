@@ -1,12 +1,19 @@
 @font-face {
-    font-family: 'MonstersIncFont'; 
-    src: url('FuturaExtraBold.ttf'); 
+    font-family: 'MonstersIncBodyFont'; 
+    src: url('FuturaExtraBold.ttf');
+    font-family: 'MonstersIncTitleFont'; 
+    src: url('MonsterAG.tff');
 }
 .background{
-	-fx-background-color: #B191FF;
+	 -fx-background-image: 	url("../resources/images/MainMenuBackground.png");
+	-fx-background-size: 100% 100%;
+  	-fx-background-repeat: no-repeat;
+    	-fx-background-position: center center;
 }
 
-.font{
-	-fx-font-family: 'MonstersIncFont';
+.Bodyfont{
+	-fx-font-family: 'MonstersIncBodyFont';
 }
-
+.TitleFont{
+	-fx-font-family: 'MonstersIncTitleFont';
+}
