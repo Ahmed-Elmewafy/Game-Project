@@ -14,12 +14,12 @@
             <Insets bottom="50.0" right="100.0" />
          </StackPane.margin>
          <image>
-            <Image url="@../resources/images/ScarersClosedDoor.png" />
+            <Image url="@../resources/images/Background/ScarersClosedDoor.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="1000.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
          <image>
-            <Image url="@../resources/images/LaughersClosedDoor.png" />
+            <Image url="@../resources/images/Background/LaughersClosedDoor.png" />
          </image>
          <StackPane.margin>
             <Insets bottom="50.0" left="100.0" />

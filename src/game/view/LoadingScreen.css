@@ -1,14 +1,10 @@
-@font-face {
-    font-family: 'MonstersIncFont'; 
-    src: url('FuturaExtraBold.ttf'); 
-}
 .background {
-	 -fx-background-image: 	url("../resources/images/background/LoadingScreenBackground.png");
-	-fx-background-size: 100% 100%;
-  	-fx-background-repeat: no-repeat;
-    	-fx-background-position: center center;
+    -fx-background-image: url("../resources/images/Background/LoadingScreenBackground.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
 }
 
-.font{
-	-fx-font-family: 'MonstersIncFont';
+.font {
+    -fx-font-family: "Futura";
 }

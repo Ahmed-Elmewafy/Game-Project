@@ -1,19 +1,14 @@
-@font-face {
-    font-family: 'MonstersIncBodyFont'; 
-    src: url('FuturaExtraBold.ttf');
-    font-family: 'MonstersIncTitleFont'; 
-    src: url('MonsterAG.tff');
-}
-.background{
-	 -fx-background-image: 	url("../resources/images/background/MainMenuBackground.png");
-	-fx-background-size: 100% 100%;
-  	-fx-background-repeat: no-repeat;
-    	-fx-background-position: center center;
+.background {
+    -fx-background-image: url("../resources/images/Background/MainMenuBackground.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
 }
 
-.Bodyfont{
-	-fx-font-family: 'MonstersIncBodyFont';
+.Bodyfont {
+    -fx-font-family: "Futura";
 }
-.TitleFont{
-	-fx-font-family: 'MonstersIncTitleFont';
+
+.TitleFont {
+    -fx-font-family: "Monster AG";
 }
