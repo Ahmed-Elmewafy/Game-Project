@@ -3,7 +3,7 @@
     src: url('FuturaExtraBold.ttf'); 
 }
 .background {
-	 -fx-background-image: 	url("../resources/images/LoadingScreenBackground.png");
+	 -fx-background-image: 	url("../resources/images/background/LoadingScreenBackground.png");
 	-fx-background-size: 100% 100%;
   	-fx-background-repeat: no-repeat;
     	-fx-background-position: center center;
