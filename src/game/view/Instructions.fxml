@@ -51,7 +51,7 @@
             <Insets left="20.0" top="330.0" />
          </StackPane.margin>
       </Text>
-      <Text fill="#8bbe1b" strokeType="OUTSIDE" strokeWidth="0.0" text="The Ultimate Goal: It is a grueling battle of wits and luck. The first monster to survive the gauntlet, amass a staggering 1,000 Energy, and unlock Boo’s Door (Cell 99) will claim absolute victory and go down in Monsters, Inc. history!" wrappingWidth="873.8076171875" StackPane.alignment="TOP_LEFT">
+      <Text fill="#8bbe1b" strokeType="OUTSIDE" strokeWidth="0.0" text="The Ultimate Goal: It is a grueling battle of wits and luck. The first monster to survive the gauntlet, amass a staggering 1,000 Energy, and unlock Boo’s Door will claim absolute victory and go down in Monsters, Inc. history!" wrappingWidth="873.8076171875" StackPane.alignment="TOP_LEFT">
          <font>
             <Font size="27.0" />
          </font>
