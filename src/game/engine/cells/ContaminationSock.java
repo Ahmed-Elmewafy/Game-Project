@@ -14,7 +14,7 @@ public class ContaminationSock extends TransportCell implements CanisterModifier
     public void transport(Monster monster) {
 		super.transport(monster);
         
-        // Apply slip penalty
+        
 		modifyCanisterEnergy(monster, -Constants.SLIP_PENALTY);
     }
 

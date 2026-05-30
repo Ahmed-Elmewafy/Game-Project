@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<!--
+    EndScreen.fxml — Results screen.
+    Layout: 1280×720. Background fills left side (the door/room).
+    All content is right-anchored in the right 560px strip, away from the door.
+-->
+<StackPane fx:id="rootPane" minWidth="1280.0" minHeight="720.0"
+           maxWidth="1280.0" maxHeight="720.0"
+           stylesheets="@EndScreen.css"
+           xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="game.controller.EndScreenController">
+
+    <!-- Full-screen background image -->
+    <ImageView fitWidth="1280.0" fitHeight="720.0"
+               preserveRatio="false" smooth="true"
+               mouseTransparent="true">
+        <image><Image url="@../resources/images/Background/EndScreenBackground.png"/></image>
+    </ImageView>
+
+    <!-- Dark gradient veil over the left two-thirds (preserves door atmosphere) -->
+    <StackPane minWidth="720.0" maxWidth="720.0" minHeight="720.0"
+               style="-fx-background-color: linear-gradient(to right, transparent, rgba(0,0,0,0.55));"
+               StackPane.alignment="CENTER_LEFT"/>
+
+    <!-- ── RIGHT PANEL — all game results ───────────────────────────── -->
+    <VBox alignment="CENTER" spacing="18.0"
+          minWidth="520.0" maxWidth="520.0"
+          StackPane.alignment="CENTER_RIGHT">
+        <StackPane.margin><Insets right="30.0"/></StackPane.margin>
+
+        <!-- Dark card backing -->
+        <VBox alignment="CENTER" spacing="20.0" styleClass="result-card">
+            <padding><Insets top="28" bottom="28" left="32" right="32"/></padding>
+
+            <!-- ── WINNER SECTION ───────────────────────────────────── -->
+            <Text text="WINNER" styleClass="section-header"/>
+
+            <ImageView fx:id="winnerImage"
+                       fitWidth="140.0" fitHeight="140.0"
+                       preserveRatio="true" smooth="true"/>
+
+            <Text fx:id="winnerName" styleClass="winner-name" text="—"/>
+
+            <HBox alignment="CENTER" spacing="8.0">
+                <Text fx:id="winnerType" styleClass="winner-type" text="—"/>
+                <Text text="·" styleClass="dot-sep"/>
+                <Text fx:id="winnerRole" styleClass="winner-role" text="—"/>
+            </HBox>
+
+            <Text fx:id="winnerEnergy" styleClass="winner-energy" text="—"/>
+
+            <!-- Divider -->
+            <StackPane minHeight="1.5" maxHeight="1.5" minWidth="420.0"
+                       style="-fx-background-color: rgba(56,199,255,0.3);"/>
+
+            <!-- ── FINAL SCORES ──────────────────────────────────────── -->
+            <Text text="FINAL SCORES" styleClass="section-header"/>
+
+            <HBox alignment="CENTER" spacing="40.0">
+
+                <!-- Player card -->
+                <VBox alignment="CENTER" spacing="6.0" styleClass="score-card">
+                    <padding><Insets top="12" bottom="12" left="16" right="16"/></padding>
+                    <ImageView fx:id="playerImage"
+                               fitWidth="72.0" fitHeight="72.0"
+                               preserveRatio="true" smooth="true"/>
+                    <Text fx:id="playerName" styleClass="score-name" text="—"/>
+                    <Text fx:id="playerEnergyLabel" styleClass="score-energy" text="—"/>
+                    <Text fx:id="playerRoleLabel" styleClass="score-role" text="—"/>
+                </VBox>
+
+                <!-- VS -->
+                <Text text="VS" styleClass="vs-text"/>
+
+                <!-- Opponent card -->
+                <VBox alignment="CENTER" spacing="6.0" styleClass="score-card">
+                    <padding><Insets top="12" bottom="12" left="16" right="16"/></padding>
+                    <ImageView fx:id="opponentImage"
+                               fitWidth="72.0" fitHeight="72.0"
+                               preserveRatio="true" smooth="true"/>
+                    <Text fx:id="opponentName" styleClass="score-name" text="—"/>
+                    <Text fx:id="opponentEnergyLabel" styleClass="score-energy" text="—"/>
+                    <Text fx:id="opponentRoleLabel" styleClass="score-role" text="—"/>
+                </VBox>
+            </HBox>
+
+            <!-- Divider -->
+            <StackPane minHeight="1.5" maxHeight="1.5" minWidth="420.0"
+                       style="-fx-background-color: rgba(56,199,255,0.3);"/>
+
+            <!-- ── BUTTONS ────────────────────────────────────────────── -->
+            <HBox alignment="CENTER" spacing="20.0">
+                <Button text="Main Menu" styleClass="btn-menu"
+                        onAction="#onMainMenu"/>
+                <Button text="Exit Game" styleClass="btn-exit"
+                        onAction="#onExit"/>
+            </HBox>
+
+        </VBox>
+    </VBox>
+
+</StackPane>

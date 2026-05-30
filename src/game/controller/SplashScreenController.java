@@ -1,6 +1,7 @@
 package game.controller;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -30,9 +31,9 @@ public class SplashScreenController implements Initializable {
 
     private static final String[] FXMLS = {
         "/game/view/MainMenu.fxml",
-        "/game/view/PlayerType.fxml",
-        "/game/view/OpponentType.fxml",
-        "/game/view/Instructions.fxml"
+        "/game/view/MonsterSelection.fxml",
+        "/game/view/Instructions.fxml",
+        "/game/view/GameLoading.fxml"
     };
 
     private static final String[] IMAGES = {
@@ -43,6 +44,8 @@ public class SplashScreenController implements Initializable {
         "/game/resources/images/Background/ScarersOpenedDoor.png",
         "/game/resources/images/Background/LaughersClosedDoor.png",
         "/game/resources/images/Background/LaughersOpenedDoor.png",
+        "/game/resources/images/Background/SelectionScreenBackground.png",
+        "/game/resources/images/Background/EndScreenBackground.png",
         "/game/resources/images/Monsters/James P. Sullivan.jpg",
         "/game/resources/images/Monsters/Mike Wazowski.jpg",
         "/game/resources/images/Monsters/Randall Boggs.png",
@@ -55,14 +58,42 @@ public class SplashScreenController implements Initializable {
 
     private static final String[] OST = {
         "/game/resources/audio/ost/StartMenu.mp3",
-        "/game/resources/audio/ost/MonsterSelection.mp3"
+        "/game/resources/audio/ost/MonsterSelection.mp3",
+        "/game/resources/audio/ost/Board1.mp3",
+        "/game/resources/audio/ost/Board2.mp3",
+        "/game/resources/audio/ost/Board3.mp3",
+        "/game/resources/audio/ost/EndCredits.mp3",
+        // Alternate OST — preloaded so MusicMode switching is instant
+        "/game/resources/audio/alternate ost/StartMenu.mp3",
+        "/game/resources/audio/alternate ost/MonsterSelection.mp3",
+        "/game/resources/audio/alternate ost/Board1.mp3",
+        "/game/resources/audio/alternate ost/Board2.mp3",
+        "/game/resources/audio/alternate ost/Board3.mp3",
+        "/game/resources/audio/alternate ost/EndCredits.mp3"
     };
 
     private static final String[] SFX = {
         "/game/resources/audio/sound effects/OpenDoor.mp3",
         "/game/resources/audio/sound effects/CloseDoor.mp3",
         "/game/resources/audio/sound effects/ScarerDoorScream.mp3",
-        "/game/resources/audio/sound effects/LaugherDoorLaugh.mp3"
+        "/game/resources/audio/sound effects/LaugherDoorLaugh.mp3",
+        "/game/resources/audio/sound effects/2319.mp3",
+        "/game/resources/audio/sound effects/CanisterIncrease.mp3",
+        "/game/resources/audio/sound effects/CanisterDecrease.mp3",
+        "/game/resources/audio/sound effects/CardDraw.mp3",
+        "/game/resources/audio/sound effects/EnergyStealAll.mp3",
+        "/game/resources/audio/sound effects/Freeze.mp3",
+        "/game/resources/audio/sound effects/MindScramble.mp3",
+        "/game/resources/audio/sound effects/Powerup.mp3",
+        "/game/resources/audio/sound effects/Running.mp3",
+        "/game/resources/audio/sound effects/ShieldBreak.mp3",
+        "/game/resources/audio/sound effects/SuperShield.mp3",
+        "/game/resources/audio/sound effects/TotalConfusion.mp3",
+        "/game/resources/audio/sound effects/DiceRoll.mp3",
+        "/game/resources/audio/sound effects/ChangeMusic.mp3",
+        "/game/resources/audio/sound effects/ConveyorBelt.mp3",
+        "/game/resources/audio/sound effects/ContaminationSock.mp3",
+        "/game/resources/audio/sound effects/ContaminationAlert.mp3"
     };
 
     private static final String[] VOICE_LINES = {
@@ -85,7 +116,7 @@ public class SplashScreenController implements Initializable {
     };
 
     private static final int TOTAL_ASSETS =
-        FONTS.length + FXMLS.length + IMAGES.length + OST.length + SFX.length + VOICE_LINES.length;
+        FONTS.length + IMAGES.length + OST.length + SFX.length + VOICE_LINES.length;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,13 +141,6 @@ public class SplashScreenController implements Initializable {
                 // Fonts already loaded in initialize() — count them as done
                 loaded += FONTS.length;
                 updateProgress(loaded, TOTAL_ASSETS);
-
-                for (String path : FXMLS) {
-                    preloadFXML(path);
-                    loaded++;
-                    updateProgress(loaded, TOTAL_ASSETS);
-                    Thread.sleep(40);
-                }
 
                 for (String path : IMAGES) {
                     loadImage(path);
@@ -168,18 +192,20 @@ public class SplashScreenController implements Initializable {
         SplashScreenLoadingBar.setProgress(1.0);
         ResourceManager.playOST("/game/resources/audio/ost/StartMenu.mp3", 0.35);
 
-        Thread delay = new Thread(() -> {
-            try { Thread.sleep(500); } catch (InterruptedException ignored) {}
-            Platform.runLater(this::transitionToMainMenu);
-        });
-        delay.setDaemon(true);
-        delay.start();
+        PauseTransition delay = new PauseTransition(Duration.millis(500));
+        delay.setOnFinished(e -> transitionToMainMenu());
+        delay.play();
     }
 
     private void transitionToMainMenu() {
+        javafx.scene.Parent content = Main.getCurrentContent();
+        if (content == null) {
+            Main.switchScene("/game/view/MainMenu.fxml");
+            return;
+        }
         FadeTransition fade = new FadeTransition(
             Duration.millis(800),
-            SplashScreenLoadingBar.getScene().getRoot()
+            content
         );
         fade.setFromValue(1.0);
         fade.setToValue(0.0);
@@ -204,19 +230,6 @@ public class SplashScreenController implements Initializable {
         }
     }
 
-    private void preloadFXML(String path) {
-        try {
-            URL url = getClass().getResource(path);
-            if (url == null) {
-                System.err.println("WARN: FXML not found: " + path);
-                return;
-            }
-            FXMLLoader loader = new FXMLLoader(url);
-            loader.load();
-        } catch (Exception e) {
-            System.err.println("WARN: Could not preload FXML " + path + ": " + e.getMessage());
-        }
-    }
 
     private void loadImage(String path) {
         try {

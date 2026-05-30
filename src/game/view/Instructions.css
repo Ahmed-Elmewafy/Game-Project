@@ -1,0 +1,68 @@
+/* Instructions.css */
+.instructions-root {
+    -fx-background-image: url("../resources/images/Background/MainMenuBackground.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+/* Dark semi-transparent overlay behind content */
+.overlay-panel {
+    -fx-background-color: #00000099;
+    -fx-background-radius: 14;
+}
+
+/* Screen title */
+.title-text {
+    -fx-font-family: "Monster AG";
+    -fx-font-size: 52px;
+    -fx-fill: #38c7ff;
+    -fx-effect: dropshadow(gaussian, #38c7ff, 14, 0.4, 0, 0);
+}
+
+/* Section headers e.g. "DOORS", "TRANSPORT CELLS" */
+.section-header {
+    -fx-font-family: "Futura";
+    -fx-font-size: 17px;
+    -fx-fill: #ffdd00;
+    -fx-font-weight: bold;
+}
+
+/* Body text */
+.body-text {
+    -fx-font-family: "Futura";
+    -fx-font-size: 13.5px;
+    -fx-fill: #e2e8f0;
+}
+
+/* Accent / highlight text */
+.accent-text {
+    -fx-font-family: "Futura";
+    -fx-font-size: 13.5px;
+    -fx-fill: #4ade80;
+}
+
+/* Win condition callout */
+.win-text {
+    -fx-font-family: "Futura";
+    -fx-font-size: 15px;
+    -fx-fill: #fbbf24;
+    -fx-font-weight: bold;
+}
+
+/* Back button */
+.btn-back {
+    -fx-font-family: "Futura";
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #1d4ed8;
+    -fx-background-radius: 8;
+    -fx-padding: 9 28 9 28;
+    -fx-cursor: hand;
+}
+.btn-back:hover { -fx-background-color: #2563eb; }
+
+/* Coloured role tags */
+.scarer-tag  { -fx-fill: #ef4444; -fx-font-family: "Futura"; -fx-font-size: 13.5px; -fx-font-weight: bold; }
+.laugher-tag { -fx-fill: #38c7ff; -fx-font-family: "Futura"; -fx-font-size: 13.5px; -fx-font-weight: bold; }

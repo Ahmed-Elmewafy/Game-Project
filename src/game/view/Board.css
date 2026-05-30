@@ -1,0 +1,236 @@
+.board-root { -fx-background-color: #c8b88a; }
+.panel-strip { -fx-background-color: #1a1f2e; }
+.side-panel {
+    -fx-background-color: rgba(15,25,55,0.88);
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(56,100,180,0.35);
+    -fx-border-width: 1.2;
+    -fx-border-radius: 14;
+}
+.monster-img-frame {
+    -fx-background-color: rgba(0,0,0,0.4);
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(56,199,255,0.18);
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+}
+.monster-name { -fx-font-family:"Futura"; -fx-font-size:14px; -fx-text-fill:#f0f4ff; -fx-font-weight:bold; -fx-alignment:center; }
+.monster-type { -fx-font-family:"Futura"; -fx-font-size:11px; -fx-text-fill:#f5c518; }
+.role-scarer  { -fx-font-family:"Futura"; -fx-font-size:11px; -fx-text-fill:#ff6060; }
+.role-laugher { -fx-font-family:"Futura"; -fx-font-size:11px; -fx-text-fill:#38c7ff; }
+.status-label {
+    -fx-font-family:"Futura"; -fx-font-size:10px; -fx-text-fill:#4ade80;
+    -fx-background-color:rgba(20,83,45,0.45); -fx-background-radius:5; -fx-padding:2 7 2 7;
+}
+.micro-header { -fx-font-family:"Futura"; -fx-font-size:9px; -fx-text-fill:rgba(140,165,210,0.8); -fx-font-weight:bold; }
+.energy-value { -fx-font-family:"Futura"; -fx-font-size:18px; -fx-text-fill:#00ff99; -fx-font-weight:bold; }
+.position-value { -fx-font-family:"Futura"; -fx-font-size:11px; -fx-text-fill:#94a3b8; }
+.energy-bar-track { -fx-background-color:rgba(10,10,30,0.75); -fx-background-radius:4; }
+.energy-bar-fill { -fx-background-color:linear-gradient(to top,#b91c1c,#ef4444,#fca5a5); -fx-background-radius:4; }
+.btn-play-turn {
+    -fx-font-family:"Futura"; -fx-font-size:12px; -fx-font-weight:bold; -fx-text-fill:#ffffff;
+    -fx-background-color:#1d4ed8; -fx-background-radius:8; -fx-padding:6 10 6 10;
+    -fx-cursor:hand; -fx-pref-width:248px;
+}
+.btn-play-turn:hover { -fx-background-color:#2563eb; }
+.btn-play-turn:disabled { -fx-opacity:0.30; }
+.btn-powerup {
+    -fx-font-family:"Futura"; -fx-font-size:12px; -fx-font-weight:bold; -fx-text-fill:#ffffff;
+    -fx-background-color:#6d28d9; -fx-background-radius:8; -fx-padding:6 10 6 10;
+    -fx-cursor:hand; -fx-pref-width:248px;
+}
+.btn-powerup:hover { -fx-background-color:#7c3aed; }
+.btn-powerup:disabled { -fx-opacity:0.30; }
+.board-grid-container {
+    -fx-background-color: #d4c49a;
+    -fx-border-color: #8b7355;
+    -fx-border-width: 3;
+}
+.card-count-label { -fx-font-family:"Futura"; -fx-font-size:10px; -fx-text-fill:rgba(120,144,184,0.8); }
+
+/* ── Log area ─────────────────────────────────────────── */
+.log-scroll {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(56,100,180,0.25);
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+}
+.log-scroll .viewport { -fx-background-color: rgba(5,10,25,0.7); }
+.log-scroll .scroll-bar:vertical { -fx-pref-width: 6px; }
+.log-scroll .scroll-bar:vertical .thumb { -fx-background-color: rgba(100,140,200,0.4); -fx-background-radius: 3; }
+.log-scroll .scroll-bar:vertical .track { -fx-background-color: transparent; }
+.log-scroll .scroll-bar:vertical .increment-button,
+.log-scroll .scroll-bar:vertical .decrement-button { -fx-pref-height: 0; -fx-min-height: 0; }
+.log-box { -fx-background-color: rgba(5,10,25,0.7); -fx-spacing: 3; }
+
+/* ── Battle Log entries — readable, spaced, styled ────────────────────── */
+.log-entry {
+    -fx-font-family: "Futura";
+    -fx-font-size: 11px;
+    -fx-text-fill: #b0c4de;
+    -fx-wrap-text: true;
+    -fx-padding: 2 4 2 4;
+}
+.log-entry-gain {
+    -fx-font-family: "Futura";
+    -fx-font-size: 11px;
+    -fx-text-fill: #4ade80;
+    -fx-wrap-text: true;
+    -fx-padding: 2 4 2 6;
+    -fx-background-color: rgba(74,222,128,0.08);
+    -fx-background-radius: 4;
+}
+.log-entry-loss {
+    -fx-font-family: "Futura";
+    -fx-font-size: 11px;
+    -fx-text-fill: #ff6060;
+    -fx-wrap-text: true;
+    -fx-padding: 2 4 2 6;
+    -fx-background-color: rgba(255,96,96,0.08);
+    -fx-background-radius: 4;
+}
+.log-entry-action {
+    -fx-font-family: "Futura";
+    -fx-font-size: 11px;
+    -fx-text-fill: #38c7ff;
+    -fx-wrap-text: true;
+    -fx-padding: 2 4 2 4;
+}
+.log-entry-warn {
+    -fx-font-family: "Futura";
+    -fx-font-size: 11px;
+    -fx-text-fill: #fbbf24;
+    -fx-wrap-text: true;
+    -fx-padding: 2 4 2 6;
+    -fx-background-color: rgba(251,191,36,0.07);
+    -fx-background-radius: 4;
+}
+
+/* ── Popup tooltip (hover) ──────────────────────────────── */
+.board-tooltip {
+    -fx-background-color: rgba(20,15,10,0.72);
+    -fx-background-radius: 8; -fx-border-color: #c8a84b;
+    -fx-border-width: 1.5; -fx-border-radius: 8;
+    -fx-padding: 8 12 8 12; -fx-font-family:"Futura";
+    -fx-font-size: 13px; -fx-text-fill: #f0e6cc;
+}
+
+/* ── Popup overlay labels ──────────────────────────────── */
+.popup-title { -fx-font-family:"Futura"; -fx-font-size:22px; -fx-text-fill:#fbbf24; -fx-font-weight:bold; }
+.popup-body  { -fx-font-family:"Futura"; -fx-font-size:14px; -fx-text-fill:#e2e8f0; -fx-text-alignment:center; -fx-alignment:center; }
+.popup-error { -fx-font-family:"Futura"; -fx-font-size:14px; -fx-text-fill:#ff6060; -fx-font-weight:bold; -fx-text-alignment:center; -fx-alignment:center; }
+
+.dice-label {
+    -fx-font-family: "Futura";
+    -fx-font-size: 13px;
+    -fx-text-fill: #f5c518;
+    -fx-font-weight: bold;
+}
+
+/* ── Settings Panel Styles ── */
+.settings-btn {
+    -fx-font-family: "Futura";
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: rgba(15, 25, 60, 0.85);
+    -fx-background-radius: 6;
+    -fx-border-color: rgba(56, 199, 255, 0.45);
+    -fx-border-width: 1.2;
+    -fx-border-radius: 6;
+    -fx-padding: 4 12 4 12;
+    -fx-cursor: hand;
+}
+.settings-btn:hover {
+    -fx-background-color: rgba(29, 78, 216, 0.90);
+    -fx-border-color: rgba(56, 199, 255, 0.85);
+}
+
+.tab-header-box {
+    -fx-background-color: rgba(10, 15, 35, 0.6);
+    -fx-background-radius: 8;
+    -fx-padding: 4;
+}
+
+.tab-btn {
+    -fx-font-family: "Futura";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #94a3b8;
+    -fx-background-color: transparent;
+    -fx-background-radius: 6;
+    -fx-padding: 6 16 6 16;
+    -fx-cursor: hand;
+}
+.tab-btn:hover {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+.tab-btn-active {
+    -fx-font-family: "Futura";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(29, 78, 216, 0.85);
+    -fx-background-radius: 6;
+    -fx-padding: 6 16 6 16;
+}
+
+.settings-input {
+    -fx-background-color: rgba(8, 12, 30, 0.85);
+    -fx-text-fill: white;
+    -fx-font-family: "Futura";
+    -fx-font-size: 13px;
+    -fx-border-color: rgba(56, 199, 255, 0.4);
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6 10 6 10;
+}
+.settings-input:focused {
+    -fx-border-color: rgba(56, 199, 255, 0.85);
+}
+
+.settings-slider .track {
+    -fx-background-color: rgba(56, 199, 255, 0.25);
+    -fx-pref-height: 6px;
+}
+.settings-slider .thumb {
+    -fx-background-color: #38c7ff;
+    -fx-pref-width: 14px;
+    -fx-pref-height: 14px;
+    -fx-background-radius: 7px;
+}
+.settings-slider .thumb:hover {
+    -fx-background-color: #60d5ff;
+    -fx-cursor: hand;
+}
+
+.btn-settings-action {
+    -fx-font-family: "Futura";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(29, 78, 216, 0.85);
+    -fx-background-radius: 6;
+    -fx-padding: 6 20 6 20;
+    -fx-cursor: hand;
+}
+.btn-settings-action:hover {
+    -fx-background-color: rgba(29, 78, 216, 1.0);
+}
+
+.btn-settings-exit {
+    -fx-font-family: "Futura";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(185, 28, 28, 0.8);
+    -fx-background-radius: 6;
+    -fx-padding: 6 20 6 20;
+    -fx-cursor: hand;
+}
+.btn-settings-exit:hover {
+    -fx-background-color: rgba(185, 28, 28, 1.0);
+}

@@ -12,3 +12,78 @@
 .TitleFont {
     -fx-font-family: "Monster AG";
 }
+
+.music-btn {
+    -fx-font-family: "Futura";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: rgba(15, 25, 60, 0.82);
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(56, 199, 255, 0.55);
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+    -fx-padding: 7 18 7 18;
+    -fx-cursor: hand;
+}
+.music-btn:hover {
+    -fx-background-color: rgba(29, 78, 216, 0.85);
+    -fx-border-color: rgba(56, 199, 255, 0.9);
+}
+
+.settings-slider .track {
+    -fx-background-color: rgba(56, 199, 255, 0.25);
+    -fx-pref-height: 6px;
+}
+.settings-slider .thumb {
+    -fx-background-color: #38c7ff;
+    -fx-pref-width: 14px;
+    -fx-pref-height: 14px;
+    -fx-background-radius: 7px;
+}
+.settings-slider .thumb:hover {
+    -fx-background-color: #60d5ff;
+    -fx-cursor: hand;
+}
+
+.settings-btn {
+    -fx-font-family: "Futura";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: rgba(15, 25, 60, 0.85);
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(56, 199, 255, 0.45);
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+    -fx-padding: 10 18 10 18;
+    -fx-cursor: hand;
+}
+.settings-btn:hover {
+    -fx-background-color: rgba(29, 78, 216, 0.95);
+    -fx-border-color: rgba(56, 199, 255, 0.85);
+}
+
+.cancel-btn {
+    -fx-font-family: "Futura";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: rgba(185, 28, 28, 0.8);
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(239, 68, 68, 0.4);
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+    -fx-padding: 8 20 8 20;
+    -fx-cursor: hand;
+}
+.cancel-btn:hover {
+    -fx-background-color: rgba(220, 38, 38, 0.95);
+    -fx-border-color: rgba(239, 68, 68, 0.8);
+}
+
+.popup-box {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.65), 15, 0.0, 0, 6);
+}
+
+

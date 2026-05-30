@@ -2,6 +2,7 @@ package game.engine.cards;
 
 import game.engine.monsters.Monster;
 
+
 public class SwapperCard extends Card {
 
 	public SwapperCard(String name, String description, int rarity) {
@@ -10,6 +11,8 @@ public class SwapperCard extends Card {
 
 	@Override
 	public void performAction(Monster player, Monster opponent) {
+		
+		
 		if (player.compareTo(opponent) < 0) {
 			int playerPosition = player.getPosition();
 			player.setPosition(opponent.getPosition());

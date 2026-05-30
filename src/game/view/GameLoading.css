@@ -1,0 +1,87 @@
+/* GameLoading.css — board loading screen */
+.loading-root {
+    -fx-background-image: url("../resources/images/Background/LoadingScreenBackground.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+/* Semi-transparent overlay to keep text readable over the background */
+.content-overlay {
+    -fx-background-color: #000000bb;
+}
+
+/* Screen title */
+.loading-title {
+    -fx-font-family: "Futura";
+    -fx-font-size: 44px;
+    -fx-fill: #38c7ff;
+}
+
+/* "LOADING BOARD…" subtitle */
+.loading-subtitle {
+    -fx-font-family: "Futura";
+    -fx-font-size: 14px;
+    -fx-fill: #7a90b8;
+    -fx-font-weight: bold;
+}
+
+/* Section headers */
+.sec-header {
+    -fx-font-family: "Futura";
+    -fx-font-size: 15px;
+    -fx-fill: #ffdd00;
+    -fx-font-weight: bold;
+}
+
+/* Body text */
+.body {
+    -fx-font-family: "Futura";
+    -fx-font-size: 12.5px;
+    -fx-fill: #cbd5e1;
+}
+
+/* Highlighted values */
+.hl { -fx-font-family: "Futura"; -fx-font-size: 12.5px; -fx-fill: #4ade80; }
+.hl-red { -fx-font-family: "Futura"; -fx-font-size: 12.5px; -fx-fill: #ef4444; }
+.hl-gold { -fx-font-family: "Futura"; -fx-font-size: 12.5px; -fx-fill: #fbbf24; -fx-font-weight: bold; }
+
+/* Progress bar track */
+.loading-bar {
+    -fx-accent: #38c7ff;
+    -fx-background-color: #1e2d4a;
+    -fx-background-radius: 4;
+    -fx-pref-height: 14px;
+}
+.loading-bar .bar {
+    -fx-background-color: linear-gradient(to right, #1d4ed8, #38c7ff);
+    -fx-background-radius: 4;
+    -fx-background-insets: 0;
+}
+.loading-bar .track {
+    -fx-background-color: #1e2d4a;
+    -fx-background-radius: 4;
+    -fx-background-insets: 0;
+}
+
+/* Continue prompt */
+.continue-text {
+    -fx-font-family: "Futura";
+    -fx-font-size: 18px;
+    -fx-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, #000000, 8, 1.0, 0, 0);
+}
+
+/* Divider line */
+.divider {
+    -fx-background-color: #2a3f6f;
+}
+
+/* Introduction section title — large, left-aligned, white */
+.intro-title {
+    -fx-font-family: "Futura";
+    -fx-font-size: 24px;
+    -fx-fill: #ffffff;
+    -fx-font-weight: bold;
+}

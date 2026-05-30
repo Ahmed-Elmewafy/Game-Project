@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
@@ -8,60 +9,104 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane minHeight="720.0" minWidth="1280.0" styleClass="background" stylesheets="@MainMenu.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.controller.MainController">
+<StackPane minHeight="720.0" minWidth="1280.0"
+           styleClass="background" stylesheets="@MainMenu.css"
+           xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="game.controller.MainController">
    <children>
-      <VBox maxHeight="170.0" minHeight="170.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #00000099;" StackPane.alignment="TOP_CENTER">
-         <StackPane.margin>
-            <Insets />
-         </StackPane.margin>
+
+      <!-- Dark header bar -->
+      <VBox maxHeight="170.0" minHeight="170.0" prefHeight="200.0" prefWidth="100.0"
+            style="-fx-background-color: #00000099;" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin><Insets/></StackPane.margin>
       </VBox>
-      <ImageView fx:id="ScarerDoorClosed" fitHeight="1000.0" fitWidth="500.0" onMouseEntered="#onScarerDoorEntered" onMouseExited="#onScarerDoorExited" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_RIGHT">
-         <StackPane.margin>
-            <Insets bottom="50.0" right="100.0" />
-         </StackPane.margin>
-         <image>
-            <Image url="@../resources/images/Background/ScarersClosedDoor.png" />
-         </image>
+
+      <!-- Scarer door (right) -->
+      <ImageView fx:id="ScarerDoorClosed"
+                 fitHeight="1000.0" fitWidth="500.0"
+                 onMouseEntered="#onScarerDoorEntered"
+                 onMouseExited="#onScarerDoorExited"
+                 onMouseClicked="#onScarerDoorClicked"
+                 pickOnBounds="true" preserveRatio="true" smooth="true"
+                 StackPane.alignment="BOTTOM_RIGHT">
+         <StackPane.margin><Insets bottom="50.0" right="100.0"/></StackPane.margin>
+         <image><Image url="@../resources/images/Background/ScarersClosedDoor.png"/></image>
       </ImageView>
-      <ImageView fx:id="LaugherClosedDoor" fitHeight="1000.0" fitWidth="500.0" onMouseEntered="#onLaugherDoorEntered" onMouseExited="#onLaugherDoorExited" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
-         <image>
-            <Image url="@../resources/images/Background/LaughersClosedDoor.png" />
-         </image>
-         <StackPane.margin>
-            <Insets bottom="50.0" left="100.0" />
-         </StackPane.margin>
+
+      <!-- Laugher door (left) -->
+      <ImageView fx:id="LaugherClosedDoor"
+                 fitHeight="1000.0" fitWidth="500.0"
+                 onMouseEntered="#onLaugherDoorEntered"
+                 onMouseExited="#onLaugherDoorExited"
+                 onMouseClicked="#onLaugherDoorClicked"
+                 pickOnBounds="true" preserveRatio="true" smooth="true"
+                 StackPane.alignment="BOTTOM_LEFT">
+         <image><Image url="@../resources/images/Background/LaughersClosedDoor.png"/></image>
+         <StackPane.margin><Insets bottom="50.0" left="100.0"/></StackPane.margin>
       </ImageView>
-      <Text fill="#38c7ff" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="TitleFont" text="DooR DasH: Scare vs Laugh Touchdown" StackPane.alignment="TOP_CENTER">
-         <font>
-            <Font size="70.0" />
-         </font>
-         <StackPane.margin>
-            <Insets top="50.0" />
-         </StackPane.margin>
+
+      <!-- Title -->
+      <Text fill="#38c7ff" strokeType="OUTSIDE" strokeWidth="0.0"
+            styleClass="TitleFont"
+            text="DooR DasH: Scare vs Laugh Touchdown"
+            StackPane.alignment="TOP_CENTER">
+         <font><Font size="70.0"/></font>
+         <StackPane.margin><Insets top="50.0"/></StackPane.margin>
       </Text>
-      <Text fill="#00ff66" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Bodyfont" text="Choose your role" StackPane.alignment="CENTER">
-         <font>
-            <Font size="42.0" />
-         </font>
-         <StackPane.margin>
-            <Insets bottom="250.0" left="20.0" />
-         </StackPane.margin>
+
+      <!-- Choose role -->
+      <Text fill="#00ff66" strokeType="OUTSIDE" strokeWidth="0.0"
+            styleClass="Bodyfont" text="Choose your role"
+            StackPane.alignment="CENTER">
+         <font><Font size="42.0"/></font>
+         <StackPane.margin><Insets bottom="250.0" left="20.0"/></StackPane.margin>
       </Text>
-      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Bodyfont" text="Laugher" StackPane.alignment="CENTER_LEFT">
-         <StackPane.margin>
-            <Insets bottom="100.0" left="290.0" />
-         </StackPane.margin>
-         <font>
-            <Font size="36.0" />
-         </font>
+
+      <!-- Role labels -->
+      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0"
+            styleClass="Bodyfont" text="Laugher"
+            StackPane.alignment="CENTER_LEFT">
+         <StackPane.margin><Insets bottom="100.0" left="290.0"/></StackPane.margin>
+         <font><Font size="36.0"/></font>
       </Text>
-      <Text fill="#ef1d1d" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Bodyfont" text="Scarer" StackPane.alignment="CENTER_RIGHT">
-         <font>
-            <Font size="36.0" />
-         </font>
-         <StackPane.margin>
-            <Insets bottom="100.0" right="310.0" />
-         </StackPane.margin>
+      <Text fill="#ef1d1d" strokeType="OUTSIDE" strokeWidth="0.0"
+            styleClass="Bodyfont" text="Scarer"
+            StackPane.alignment="CENTER_RIGHT">
+         <font><Font size="36.0"/></font>
+         <StackPane.margin><Insets bottom="100.0" right="310.0"/></StackPane.margin>
       </Text>
+
+      <!-- Music button — top-left, inside header bar -->
+      <Button fx:id="musicBtn" text="♪  Music"
+              onAction="#onMusicButtonClicked"
+              styleClass="music-btn"
+              StackPane.alignment="TOP_LEFT">
+         <StackPane.margin><Insets top="16.0" left="20.0"/></StackPane.margin>
+      </Button>
+
+      <!-- Exit button — top-right, inside header bar -->
+      <Button fx:id="exitBtn" text="Exit Game"
+              onAction="#onExitButtonClicked"
+              styleClass="music-btn"
+              StackPane.alignment="TOP_RIGHT">
+         <StackPane.margin><Insets top="16.0" right="40.0"/></StackPane.margin>
+      </Button>
+
+      <!-- ══ POPUP OVERLAY LAYER ══ -->
+      <StackPane fx:id="popupOverlay" visible="false"
+                 style="-fx-background-color: rgba(0,0,0,0.7);"
+                 minWidth="1280.0" minHeight="720.0">
+         <children>
+            <VBox fx:id="popupContent" alignment="CENTER" spacing="14.0"
+                  maxHeight="320.0" maxWidth="480.0"
+                  style="-fx-background-color: rgba(15,20,40,0.95);
+                         -fx-background-radius: 16; -fx-border-color: #c8a84b;
+                         -fx-border-width: 2; -fx-border-radius: 16;">
+                <padding><Insets top="20" bottom="20" left="28" right="28"/></padding>
+            </VBox>
+         </children>
+      </StackPane>
+
    </children>
 </StackPane>

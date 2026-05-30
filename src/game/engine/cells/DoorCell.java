@@ -46,13 +46,13 @@ public class DoorCell extends Cell implements CanisterModifier {
 	     
 		modifyCanisterEnergy(landingMonster, this.energy);
 
-		// Only block if the monster took damage (opposing team) and was shielded
+		
 		if (wasShielded && landingMonster.getRole() != this.role) 
 			return;
 
 	    
 		for (Monster monster : Board.getStationedMonsters()) {
-			//Only affect team members
+			
 			if (monster.getRole() == landingMonster.getRole()) {
 				modifyCanisterEnergy(monster, this.energy);
 				System.out.println("  -> " + monster.getName() + " got " + this.energy + " energy!");
@@ -64,7 +64,7 @@ public class DoorCell extends Cell implements CanisterModifier {
 
 	@Override
 	public void modifyCanisterEnergy(Monster monster, int canisterValue) {
-		//Affect on team members vary according to role
+		
 		monster.alterEnergy(this.role == monster.getRole() ? canisterValue : -canisterValue);
 	}
 }

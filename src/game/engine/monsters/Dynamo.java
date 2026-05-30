@@ -2,6 +2,7 @@ package game.engine.monsters;
 
 import game.engine.Role;
 
+
 public class Dynamo extends Monster {
 	
 	public Dynamo(String name, String description, Role role, int energy) {
@@ -15,6 +16,9 @@ public class Dynamo extends Monster {
 	
 	@Override
 	public void setEnergy(int energy) {
+		
+		
+		
 		super.setEnergy(getEnergy() + (energy - getEnergy()) * 2);
 	}
 }

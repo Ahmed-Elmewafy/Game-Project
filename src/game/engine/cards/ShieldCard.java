@@ -5,7 +5,7 @@ import game.engine.monsters.Monster;
 public class ShieldCard extends Card {
 	
 	public ShieldCard(String name, String description, int rarity) {
-		super(name, description, rarity, true); // LUCKY - protects you!
+		super(name, description, rarity, true); 
 	}
 
 	@Override

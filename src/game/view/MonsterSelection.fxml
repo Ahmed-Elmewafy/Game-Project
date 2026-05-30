@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<!--
+  MonsterSelection.fxml
+  Changes applied:
+  1. Removed PLAYER/OPPONENT banner VBoxes — background image already has this text
+  2. Panels are CENTER aligned vertically so image+text sit in the middle
+  3. Energy symbol removed from controller (set in populatePanel)
+  4. continueBox moved to BOTTOM_RIGHT with high-visibility white color
+  5. 1-second delay between player and opponent handled in controller
+  6. Both use Ally voice lines (handled in controller)
+-->
+<StackPane
+    minHeight="720.0" minWidth="1280.0"
+    styleClass="background"
+    stylesheets="@MonsterSelection.css"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="game.controller.MonsterSelectionController"
+    onMouseClicked="#onScreenClicked">
+
+    <!-- Side-by-side monster panels, vertically centered -->
+    <HBox alignment="CENTER" spacing="0">
+
+        <!-- ══ PLAYER PANEL (left / blue side) ══ -->
+        <VBox fx:id="playerPanel" alignment="CENTER" spacing="16.0"
+              minWidth="640.0" maxWidth="640.0">
+
+            <!-- Monster image with blue glow -->
+            <ImageView fx:id="playerImage"
+                       fitWidth="340.0" fitHeight="340.0"
+                       preserveRatio="true" smooth="true" pickOnBounds="true"
+                       style="-fx-effect: dropshadow(gaussian,#38c7ff,28,0.65,0,0);" />
+
+            <!-- Info box -->
+            <VBox alignment="CENTER" spacing="8.0"
+                  style="-fx-background-color: #00000088; -fx-background-radius: 10;">
+                <padding><Insets top="16" bottom="16" left="24" right="24"/></padding>
+
+                <Text fx:id="playerName" fill="WHITE" wrappingWidth="560.0" textAlignment="CENTER">
+                    <font><Font name="Futura" size="32.0"/></font>
+                </Text>
+                <HBox spacing="20.0" alignment="CENTER">
+                    <Text fx:id="playerRole">
+                        <font><Font name="Futura" size="22.0"/></font>
+                    </Text>
+                    <Text fx:id="playerType" fill="#ffdd00">
+                        <font><Font name="Futura" size="22.0"/></font>
+                    </Text>
+                </HBox>
+                <Text fx:id="playerEnergy" fill="#00ff88" textAlignment="CENTER" wrappingWidth="560.0">
+                    <font><Font name="Futura" size="20.0"/></font>
+                </Text>
+                <Text fx:id="playerDesc" fill="#dddddd" wrappingWidth="560.0" textAlignment="CENTER">
+                    <font><Font name="Futura" size="18.0"/></font>
+                </Text>
+            </VBox>
+
+            <VBox.margin><Insets left="20" right="10"/></VBox.margin>
+        </VBox>
+
+        <!-- ══ OPPONENT PANEL (right / red side) ══ -->
+        <VBox fx:id="opponentPanel" alignment="CENTER" spacing="16.0"
+              minWidth="640.0" maxWidth="640.0">
+
+            <!-- Monster image with red glow -->
+            <ImageView fx:id="opponentImage"
+                       fitWidth="340.0" fitHeight="340.0"
+                       preserveRatio="true" smooth="true" pickOnBounds="true"
+                       style="-fx-effect: dropshadow(gaussian,#ef4444,28,0.65,0,0);" />
+
+            <!-- Info box -->
+            <VBox alignment="CENTER" spacing="8.0"
+                  style="-fx-background-color: #00000088; -fx-background-radius: 10;">
+                <padding><Insets top="16" bottom="16" left="24" right="24"/></padding>
+
+                <Text fx:id="opponentName" fill="WHITE" wrappingWidth="560.0" textAlignment="CENTER">
+                    <font><Font name="Futura" size="32.0"/></font>
+                </Text>
+                <HBox spacing="20.0" alignment="CENTER">
+                    <Text fx:id="opponentRole">
+                        <font><Font name="Futura" size="22.0"/></font>
+                    </Text>
+                    <Text fx:id="opponentType" fill="#ffdd00">
+                        <font><Font name="Futura" size="22.0"/></font>
+                    </Text>
+                </HBox>
+                <Text fx:id="opponentEnergy" fill="#00ff88" textAlignment="CENTER" wrappingWidth="560.0">
+                    <font><Font name="Futura" size="20.0"/></font>
+                </Text>
+                <Text fx:id="opponentDesc" fill="#dddddd" wrappingWidth="560.0" textAlignment="CENTER">
+                    <font><Font name="Futura" size="18.0"/></font>
+                </Text>
+            </VBox>
+
+            <VBox.margin><Insets left="10" right="20"/></VBox.margin>
+        </VBox>
+
+    </HBox>
+
+    <!-- "Click anywhere to continue" — pinned to true bottom-right of the 1280x720 canvas -->
+    <!-- The StackPane fills the whole canvas; text is aligned inside to BOTTOM_RIGHT -->
+    <StackPane fx:id="continueBox" opacity="0.0"
+               minWidth="1280.0" minHeight="720.0"
+               maxWidth="1280.0" maxHeight="720.0"
+               mouseTransparent="true">
+        <Text fill="WHITE" text="Click anywhere to continue"
+              StackPane.alignment="BOTTOM_RIGHT"
+              style="-fx-font-weight: bold; -fx-effect: dropshadow(gaussian,#000000,10,1.0,0,0);">
+            <font><Font name="Futura" size="24.0"/></font>
+            <StackPane.margin><Insets bottom="28" right="36"/></StackPane.margin>
+        </Text>
+    </StackPane>
+
+</StackPane>

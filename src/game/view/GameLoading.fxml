@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<StackPane
+    minWidth="1280.0" minHeight="720.0"
+    maxWidth="1280.0" maxHeight="720.0"
+    styleClass="loading-root"
+    stylesheets="@GameLoading.css"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="game.controller.GameLoadingController"
+    onMouseClicked="#onScreenClicked">
+
+    <!-- Dark overlay -->
+    <StackPane styleClass="content-overlay"
+               minWidth="1280.0" minHeight="720.0"/>
+
+    <!-- ══ MAIN CONTENT ══════════════════════════════════════════════ -->
+    <VBox alignment="TOP_CENTER" spacing="0"
+          minWidth="1280.0" minHeight="720.0">
+
+
+        <!-- CONTENT ROW -->
+        <HBox spacing="0" VBox.vgrow="ALWAYS">
+
+            <!-- ── LEFT COLUMN (740px) — all rules text ───────── -->
+            <VBox spacing="10.0" minWidth="740.0" maxWidth="740.0"
+                  style="-fx-background-color: #00000066;">
+                <padding><Insets top="48" bottom="10" left="28" right="20"/></padding>
+
+                <!-- GAME INTRO -->
+                <TextFlow lineSpacing="3.0">
+                    <Text styleClass="body" text="DooR DasH: Scare vs Laugh Touchdown is a competitive board game set in the world of Monsters Inc., where the city of Monstropolis runs on energy collected from children. Two monsters compete to prove who can collect the most energy while navigating the dangerous Floor.&#10;&#10;"/>
+                    <Text styleClass="body" text="This is not just a race - it's a test of strategy, risk management, and the eternal rivalry between "/>
+                    <Text styleClass="hl"   text="Scarers "/>
+                    <Text styleClass="body" text="and "/>
+                    <Text styleClass="hl"   text="Laughers. "/>
+                    <Text styleClass="body" text="Will you harness the power of screams, or rely on the revolutionary energy of laughter?"/>
+                </TextFlow>
+
+                <Pane styleClass="divider" minHeight="1.0" maxHeight="1.0" minWidth="680.0"/>
+
+                <!-- HOW TO PLAY -->
+                <Text styleClass="sec-header" text="HOW TO PLAY">
+                    <font><Font name="Futura" size="15.0"/></font>
+                </Text>
+                <TextFlow lineSpacing="2.0">
+                    <Text styleClass="body" text="The game is played in turns. On your turn, you will first have the opportunity to use your monster's unique Powerup if you have at least "/>
+                    <Text styleClass="hl"   text="500 Energy. "/>
+                    <Text styleClass="body" text="Then, you will roll the dice and move forward automatically. The cell you land on will trigger an effect - such as gaining energy from matching doors, losing energy from contamination socks, or drawing a wildcard.&#10;The game immediately ends when a monster reaches or passes "/>
+                    <Text styleClass="hl"   text="Cell 99 "/>
+                    <Text styleClass="body" text="with "/>
+                    <Text styleClass="hl"   text="1,000+ Energy "/>
+                    <Text styleClass="body" text="in their canister. Managing your energy while racing to the end is key!"/>
+                </TextFlow>
+
+                <Pane styleClass="divider" minHeight="1.0" maxHeight="1.0" minWidth="680.0"/>
+
+                <!-- CELL TYPES -->
+                <Text styleClass="sec-header" text="CELL TYPES">
+                    <font><Font name="Futura" size="15.0"/></font>
+                </Text>
+                <TextFlow lineSpacing="4.0">
+                    <Text styleClass="hl"     text="Doors: "/>
+                    <Text styleClass="body"   text="Match your role: whole team gains energy. Wrong role: whole team loses it. Each door works once.&#10;"/>
+                    <Text styleClass="hl"     text="Conveyor Belts: "/>
+                    <Text styleClass="body"   text="Instantly move forward. No effect at the landing cell.&#10;"/>
+                    <Text styleClass="hl-red" text="Contamination Socks: "/>
+                    <Text styleClass="body"   text="Move backward and lose 100 Energy. Shield blocks the energy loss but not the move.&#10;"/>
+                    <Text styleClass="hl"     text="Card Cells: "/>
+                    <Text styleClass="body"   text="Draw a card: Swap positions, Steal energy, Start Over, Shield, or Confusion.&#10;"/>
+                    <Text styleClass="hl"     text="Monster Cells: "/>
+                    <Text styleClass="body"   text="Same role: activate your powerup free. Opposite role: swap energies if yours is higher (shield protects you)."/>
+                </TextFlow>
+
+                <Pane styleClass="divider" minHeight="1.0" maxHeight="1.0" minWidth="680.0"/>
+
+                <!-- MONSTER TYPES -->
+                <Text styleClass="sec-header" text="MONSTER TYPES">
+                    <font><Font name="Futura" size="15.0"/></font>
+                </Text>
+                <TextFlow lineSpacing="4.0">
+                    <Text styleClass="hl"   text="Dasher: "/>
+                    <Text styleClass="body" text="Moves 2x dice roll. Powerup: 3x speed for 3 turns.&#10;"/>
+                    <Text styleClass="hl"   text="Dynamo: "/>
+                    <Text styleClass="body" text="All energy changes doubled (gains and losses). Powerup: freeze opponent for 1 turn.&#10;"/>
+                    <Text styleClass="hl"   text="MultiTasker: "/>
+                    <Text styleClass="body" text="Moves half dice, but gains +200 on every energy change. Powerup: normal speed for 2 turns.&#10;"/>
+                    <Text styleClass="hl"   text="Schemer: "/>
+                    <Text styleClass="body" text="+10 on every energy change. Powerup: steal 10 Energy from every monster on the board."/>
+                </TextFlow>
+
+            </VBox>
+
+            <!-- ── RIGHT COLUMN (540px) — instruction helper image ─ -->
+            <VBox spacing="12.0" alignment="TOP_CENTER"
+                  minWidth="540.0" maxWidth="540.0"
+                  style="-fx-background-color: #00000055;">
+                <padding><Insets top="48" bottom="10" left="14" right="14"/></padding>
+
+                <!-- Instruction helper — no background, matching dark overlay -->
+                <ImageView fitWidth="380.0" fitHeight="420.0"
+                           preserveRatio="true" smooth="true">
+                    <image>
+                        <Image url="@../resources/images/Background/instruction helper.png"/>
+                    </image>
+                </ImageView>
+
+                <Pane minHeight="10.0" VBox.vgrow="ALWAYS"/>
+
+                <!-- Tips -->
+                <TextFlow lineSpacing="3.0" maxWidth="480.0" textAlignment="LEFT">
+                    <padding><Insets left="15" right="15"/></padding>
+                    <Text styleClass="hl-gold" text="Tips:&#10;"/>
+                    <Text styleClass="hl-gold" text="• "/>
+                    <Text styleClass="body" text="Hover over any board cell to see its name, role, and details.&#10;"/>
+                    <Text styleClass="hl-gold" text="• "/>
+                    <Text styleClass="body" text="Press ESC during the match to toggle the Settings menu."/>
+                </TextFlow>
+
+                <!-- Keyboard Controls -->
+                <TextFlow fx:id="controlsTextFlow" lineSpacing="3.0" maxWidth="480.0" textAlignment="LEFT">
+                    <padding><Insets left="15" right="15"/></padding>
+                </TextFlow>
+
+            </VBox>
+        </HBox>
+
+        <!-- BOTTOM BAR — loading bar bottom-right, fades out; continue text replaces it -->
+        <HBox alignment="CENTER_RIGHT" minHeight="52.0"
+              style="-fx-background-color: #000000bb;">
+            <padding><Insets top="8" bottom="10" left="20" right="28"/></padding>
+
+            <!-- Spacer pushes content to the right -->
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- StackPane overlays loadingGroup and continueBox in same position -->
+            <StackPane alignment="CENTER_RIGHT">
+
+                <!-- Loading group: text + bar — fades out when done -->
+                <HBox fx:id="loadingGroup" alignment="CENTER_RIGHT" spacing="12.0">
+                    <Text fx:id="loadingStatusText" styleClass="loading-subtitle"
+                          text="Loading…">
+                        <font><Font name="Futura" size="13.0"/></font>
+                    </Text>
+                    <ProgressBar fx:id="loadingBar"
+                                 styleClass="loading-bar"
+                                 progress="0.0"
+                                 prefWidth="280.0" minHeight="12.0"/>
+                </HBox>
+
+                <!-- "Click anywhere to continue" — same position as bar, invisible until done -->
+                <StackPane fx:id="continueBox" opacity="0.0" alignment="CENTER_RIGHT">
+                    <Text fill="WHITE" text="Click anywhere to continue"
+                          style="-fx-font-weight: bold;">
+                        <font><Font name="Futura" size="20.0"/></font>
+                    </Text>
+                </StackPane>
+
+            </StackPane>
+
+        </HBox>
+
+    </VBox>
+
+</StackPane>

@@ -7,7 +7,7 @@ public abstract class Monster implements Comparable<Monster> {
 	private String name;
 	private String description;
 	private Role role;
-	private Role originalRole; // For confusion card
+	private Role originalRole; 
 	private int energy;
 	private int position;
 	private boolean frozen;
@@ -100,11 +100,15 @@ public abstract class Monster implements Comparable<Monster> {
 	public final void alterEnergy(int energy) {
 		if (shielded && energy < 0) {
 			System.out.println(name + "'s shield blocked " + (-energy) + " damage!");
-			shielded = false; // Shield breaks after one use
+			shielded = false; 
 		}
 		
 		else 
 			this.setEnergy(this.getEnergy() + energy);	
+	}
+	
+	public final void deductFlatCost(int cost) {
+		this.energy = Math.max(Constants.MIN_ENERGY, this.energy - cost);
 	}
 	
 	public void decrementConfusion() {

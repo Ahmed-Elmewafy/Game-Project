@@ -1,68 +1,276 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<StackPane minHeight="720.0" minWidth="1280.0" stylesheets="@LoadingScreen.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
-   <styleClass>
-      <String fx:value="background" />
-      <String fx:value="font" />
-   </styleClass>
-   <children>
-      <VBox prefHeight="720.0" prefWidth="804.0" style="-fx-background-color: #00000099;" StackPane.alignment="CENTER">
-         <StackPane.margin>
-            <Insets />
-         </StackPane.margin>
-      </VBox>
-      <Text fill="#8bbe1b" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #8bbe1b;" text="The Challenge Awaits" StackPane.alignment="TOP_LEFT">
-         <StackPane.margin>
-            <Insets left="10.0" top="20.0" />
-         </StackPane.margin>
-         <font>
-            <Font size="46.0" />
-         </font>
-      </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #8bbe1b;" text="Navigate the Chaos: Race your rival across a treacherous 100-door grid. Every roll of the dice matters, and the factory floor is constantly shifting." wrappingWidth="873.8076171875" StackPane.alignment="TOP_LEFT">
-         <font>
-            <Font size="27.0" />
-         </font>
-         <StackPane.margin>
-            <Insets left="20.0" top="100.0" />
-         </StackPane.margin>
-      </Text>
-      <Text fill="#8bbe1b" strokeType="OUTSIDE" strokeWidth="0.0" text="Harness Your Power: Gather vital energy from active doors, but tread carefully! A wrong step could land you on a toxic 23-19 Contamination Sock, devastating your progress, while Conveyor Belts can rocket you ahead of the competition." wrappingWidth="873.8076171875" StackPane.alignment="TOP_LEFT">
-         <font>
-            <Font size="27.0" />
-         </font>
-         <StackPane.margin>
-            <Insets left="20.0" top="180.0" />
-         </StackPane.margin>
-      </Text>
-      <Text fill="#8bbe1b" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn the Tides: Strategy is everything. Spend 500 Energy to unleash your Monster’s unique Power-Up, or land on Card Cells to draw unpredictable effects that can steal your rival's energy, scramble their role, or freeze them in their tracks." wrappingWidth="873.8076171875" StackPane.alignment="TOP_LEFT">
-         <font>
-            <Font size="27.0" />
-         </font>
-         <StackPane.margin>
-            <Insets left="20.0" top="330.0" />
-         </StackPane.margin>
-      </Text>
-      <Text fill="#8bbe1b" strokeType="OUTSIDE" strokeWidth="0.0" text="The Ultimate Goal: It is a grueling battle of wits and luck. The first monster to survive the gauntlet, amass a staggering 1,000 Energy, and unlock Boo’s Door will claim absolute victory and go down in Monsters, Inc. history!" wrappingWidth="873.8076171875" StackPane.alignment="TOP_LEFT">
-         <font>
-            <Font size="27.0" />
-         </font>
-         <StackPane.margin>
-            <Insets left="10.0" top="480.0" />
-         </StackPane.margin>
-      </Text>
-      <ProgressBar prefHeight="18.0" prefWidth="229.0" progress="0.0" StackPane.alignment="BOTTOM_RIGHT">
-         <StackPane.margin>
-            <Insets bottom="20.0" right="30.0" />
-         </StackPane.margin>
-      </ProgressBar>
-   </children>
+<!--
+  Instructions.fxml  —  DooR DasH game rules screen
+  1280 × 720, MainMenuBackground, Futura Extra Bold font.
+  Layout: left column (rules text) | right column (instruction helper image + monster types)
+  Back button bottom-left returns to MainMenu.
+-->
+<StackPane
+    minWidth="1280.0" minHeight="720.0"
+    styleClass="instructions-root"
+    stylesheets="@Instructions.css"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="game.controller.InstructionsController">
+
+    <!-- ── Dark overlay covering the whole screen ─────────────────── -->
+    <StackPane style="-fx-background-color: #00000088;"
+               minWidth="1280.0" minHeight="720.0"/>
+
+    <!-- ── Main layout ────────────────────────────────────────────── -->
+    <VBox alignment="TOP_CENTER" spacing="0"
+          minWidth="1280.0" minHeight="720.0">
+
+        <!-- ══ TITLE BAR ══════════════════════════════════════════ -->
+        <HBox alignment="CENTER" minHeight="80.0"
+              style="-fx-background-color: #00000099;">
+            <padding><Insets top="10" bottom="10"/></padding>
+            <Text text="How to Play DooR DasH" styleClass="title-text">
+                <font><Font name="Monster AG" size="48.0"/></font>
+            </Text>
+        </HBox>
+
+        <!-- ══ CONTENT ROW ════════════════════════════════════════ -->
+        <HBox spacing="0" alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+
+            <!-- ── LEFT: scrollable rules text (720px) ─────────── -->
+            <ScrollPane fitToWidth="true"
+                        minWidth="760.0" maxWidth="760.0"
+                        minHeight="580.0"
+                        style="-fx-background: transparent; -fx-background-color: transparent;
+                               -fx-border-color: transparent;">
+                <padding><Insets top="4" bottom="4"/></padding>
+
+                <VBox spacing="12.0"
+                      style="-fx-background-color: #00000077; -fx-background-radius: 0;"
+                      minWidth="740.0">
+                    <padding><Insets top="18" bottom="18" left="28" right="20"/></padding>
+
+                    <!-- ── OBJECTIVE ── -->
+                    <Text styleClass="section-header" text="🏆  OBJECTIVE">
+                        <font><Font name="Futura" size="17.0"/></font>
+                    </Text>
+                    <TextFlow>
+                        <Text styleClass="body-text"
+                              text="Be the first monster to reach " wrappingWidth="680.0"/>
+                        <Text styleClass="accent-text" text="Cell 99 (Boo's Door) "/>
+                        <Text styleClass="body-text" text="with at least "/>
+                        <Text styleClass="accent-text" text="1,000 Energy "/>
+                        <Text styleClass="body-text" text="in your canister."/>
+                    </TextFlow>
+
+                    <!-- ── TURN SEQUENCE ── -->
+                    <Text styleClass="section-header" text="🎲  TURN SEQUENCE">
+                        <font><Font name="Futura" size="17.0"/></font>
+                    </Text>
+                    <TextFlow lineSpacing="4.0">
+                        <Text styleClass="body-text"
+                              text="1.  Powerup Phase (optional) — Spend 500 Energy to activate your monster's unique powerup.&#10;"/>
+                        <Text styleClass="body-text"
+                              text="2.  Roll the Dice — A standard 1–6 dice determines how many cells you move.&#10;"/>
+                        <Text styleClass="body-text"
+                              text="3.  Movement — If your destination is occupied by your opponent, the move is invalid and you must roll again.&#10;"/>
+                        <Text styleClass="body-text"
+                              text="4.  Cell Effect — The cell you land on activates its special effect.&#10;"/>
+                        <Text styleClass="body-text"
+                              text="5.  Turn Switch — Play passes to the other monster."/>
+                    </TextFlow>
+
+                    <!-- ── DOORS ── -->
+                    <Text styleClass="section-header" text="🚪  DOOR CELLS (50 doors — all odd cells)">
+                        <font><Font name="Futura" size="17.0"/></font>
+                    </Text>
+                    <TextFlow lineSpacing="4.0">
+                        <Text styleClass="body-text"
+                              text="Each door belongs to one role. Landing on a door:&#10;"/>
+                        <Text styleClass="accent-text" text="Role Match  "/>
+                        <Text styleClass="body-text"
+                              text="→ You AND all your teammates gain that door's energy.&#10;"/>
+                        <Text fill="#ef4444" text="Role Mismatch  ">
+                            <font><Font name="Futura" size="13.5"/></font>
+                        </Text>
+                        <Text styleClass="body-text"
+                              text="→ You AND all your teammates lose that door's energy (shield blocks this).&#10;"/>
+                        <Text styleClass="body-text"
+                              text="Doors are one-time use. Once activated they are exhausted forever (unless a shield blocked the energy change)."/>
+                    </TextFlow>
+
+                    <!-- ── TRANSPORT CELLS ── -->
+                    <Text styleClass="section-header" text="⚙️  TRANSPORT CELLS">
+                        <font><Font name="Futura" size="17.0"/></font>
+                    </Text>
+                    <TextFlow lineSpacing="4.0">
+                        <Text styleClass="accent-text" text="Conveyor Belts (5 cells, green)  "/>
+                        <Text styleClass="body-text"
+                              text="→ Instantly transport you FORWARD by the belt's value. No cell effect at destination.&#10;"/>
+                        <Text fill="#f97316" text="Contamination Socks (5 cells, orange)  ">
+                            <font><Font name="Futura" size="13.5"/></font>
+                        </Text>
+                        <Text styleClass="body-text"
+                              text="→ Transport you BACKWARD by the sock's value AND drain 100 Energy (shield blocks the energy loss but NOT the move)."/>
+                    </TextFlow>
+
+                    <!-- ── CARD CELLS ── -->
+                    <Text styleClass="section-header" text="🃏  CARD CELLS (10 cells)">
+                        <font><Font name="Futura" size="17.0"/></font>
+                    </Text>
+                    <TextFlow lineSpacing="4.0">
+                        <Text styleClass="body-text"
+                              text="Draw a random card from the shuffled deck. Cards are discarded after use. When the deck runs out, all cards are reshuffled. Card types:&#10;"/>
+                        <Text styleClass="accent-text"  text="Position Swap  "/>
+                        <Text styleClass="body-text"    text="— Swap places with your opponent (only if you are behind).&#10;"/>
+                        <Text styleClass="accent-text"  text="Energy Steal  "/>
+                        <Text styleClass="body-text"    text="— Steal a set amount of energy from your opponent (shield blocks this).&#10;"/>
+                        <Text styleClass="accent-text"  text="Start Over  "/>
+                        <Text styleClass="body-text"    text="— Sends a monster back to Cell 0 (lucky = you send opponent; unlucky = you go back).&#10;"/>
+                        <Text styleClass="accent-text"  text="Super Shield  "/>
+                        <Text styleClass="body-text"    text="— Protect yourself from the next energy loss. Removes opponent's shield.&#10;"/>
+                        <Text styleClass="accent-text"  text="Confusion  "/>
+                        <Text styleClass="body-text"    text="— Swaps both monsters' roles for several turns, reversing door effects."/>
+                    </TextFlow>
+
+                    <!-- ── MONSTER CELLS ── -->
+                    <Text styleClass="section-header" text="👾  MONSTER CELLS (6 cells)">
+                        <font><Font name="Futura" size="17.0"/></font>
+                    </Text>
+                    <TextFlow lineSpacing="4.0">
+                        <Text styleClass="accent-text" text="Same Role  "/>
+                        <Text styleClass="body-text"
+                              text="→ Activate your powerup for FREE (no 500 Energy cost).&#10;"/>
+                        <Text fill="#ef4444" text="Opposite Role  ">
+                            <font><Font name="Futura" size="13.5"/></font>
+                        </Text>
+                        <Text styleClass="body-text"
+                              text="→ If you have MORE energy than the stationed monster, your energies are SWAPPED (shield protects you but the stationed monster still gains)."/>
+                    </TextFlow>
+
+                    <!-- ── WIN CONDITION ── -->
+                    <VBox style="-fx-background-color: #1a2540cc; -fx-background-radius: 8;"
+                          spacing="4.0">
+                        <padding><Insets top="10" bottom="10" left="14" right="14"/></padding>
+                        <Text styleClass="win-text" text="🏁  WIN CONDITION">
+                            <font><Font name="Futura" size="15.0"/></font>
+                        </Text>
+                        <Text styleClass="win-text"
+                              text="Reach Cell 99 (Boo's Door)  +  have ≥ 1,000 Energy"
+                              wrappingWidth="660.0">
+                            <font><Font name="Futura" size="15.0"/></font>
+                        </Text>
+                        <Text styleClass="body-text"
+                              text="If you reach Cell 99 without enough energy, wrap back and keep playing."
+                              wrappingWidth="660.0"/>
+                    </VBox>
+
+                    <!-- ── KEYBOARD CONTROLS ── -->
+                    <VBox style="-fx-background-color: #1a2540cc; -fx-background-radius: 8;"
+                          spacing="4.0">
+                        <padding><Insets top="10" bottom="10" left="14" right="14"/></padding>
+                        <Text styleClass="win-text" text="KEYBOARD CONTROLS">
+                            <font><Font name="Futura" size="15.0"/></font>
+                        </Text>
+                        <TextFlow>
+                            <Text styleClass="body-text" text="• Player 1 (Blue): "/>
+                            <Text styleClass="accent-text" text="Space / A"/>
+                            <Text styleClass="body-text" text=" to roll, "/>
+                            <Text styleClass="accent-text" text="S"/>
+                            <Text styleClass="body-text" text=" to Use Powerup."/>
+                        </TextFlow>
+                        <TextFlow>
+                            <Text styleClass="body-text" text="• Player 2 (Red):  "/>
+                            <Text styleClass="accent-text" text="Enter / K"/>
+                            <Text styleClass="body-text" text=" to roll, "/>
+                            <Text styleClass="accent-text" text="L"/>
+                            <Text styleClass="body-text" text=" to Use Powerup."/>
+                        </TextFlow>
+                    </VBox>
+
+                </VBox>
+            </ScrollPane>
+
+            <!-- ── RIGHT: visual helper + monster types (520px) ─── -->
+            <VBox spacing="16.0" alignment="TOP_CENTER"
+                  minWidth="520.0" maxWidth="520.0"
+                  style="-fx-background-color: #00000077;">
+                <padding><Insets top="18" bottom="18" left="16" right="16"/></padding>
+
+                <!-- Instruction helper image -->
+                <ImageView fitWidth="340.0" fitHeight="350.0"
+                           preserveRatio="true" smooth="true">
+                    <image>
+                        <Image url="@../resources/images/Background/instruction helper.png"/>
+                    </image>
+                </ImageView>
+
+                <!-- Monster types quick reference -->
+                <VBox styleClass="overlay-panel" spacing="8.0"
+                      minWidth="480.0">
+                    <padding><Insets top="12" bottom="12" left="16" right="16"/></padding>
+
+                    <Text styleClass="section-header" text="MONSTER TYPES">
+                        <font><Font name="Futura" size="16.0"/></font>
+                    </Text>
+
+                    <!-- Dasher -->
+                    <HBox spacing="8.0" alignment="CENTER_LEFT">
+                        <Text text="Dasher  " styleClass="accent-text">
+                            <font><Font name="Futura" size="13.5"/></font>
+                        </Text>
+                        <Text text="Moves 2× dice roll. Powerup: 3× speed for 3 turns."
+                              styleClass="body-text" wrappingWidth="390.0"/>
+                    </HBox>
+                    <!-- Dynamo -->
+                    <HBox spacing="8.0" alignment="CENTER_LEFT">
+                        <Text text="Dynamo  " styleClass="accent-text">
+                            <font><Font name="Futura" size="13.5"/></font>
+                        </Text>
+                        <Text text="All energy changes doubled (gains AND losses). Powerup: freeze opponent 1 turn."
+                              styleClass="body-text" wrappingWidth="390.0"/>
+                    </HBox>
+                    <!-- MultiTasker -->
+                    <HBox spacing="8.0" alignment="CENTER_LEFT">
+                        <Text text="MultiTasker  " styleClass="accent-text">
+                            <font><Font name="Futura" size="13.5"/></font>
+                        </Text>
+                        <Text text="Moves ½ dice roll. +200 bonus on all energy changes. Powerup: normal speed for 2 turns."
+                              styleClass="body-text" wrappingWidth="390.0"/>
+                    </HBox>
+                    <!-- Schemer -->
+                    <HBox spacing="8.0" alignment="CENTER_LEFT">
+                        <Text text="Schemer  " styleClass="accent-text">
+                            <font><Font name="Futura" size="13.5"/></font>
+                        </Text>
+                        <Text text="+10 on every energy change. Powerup: steal 10 energy from ALL monsters (ignores shield)."
+                              styleClass="body-text" wrappingWidth="390.0"/>
+                    </HBox>
+
+                </VBox>
+            </VBox>
+
+        </HBox>
+
+        <!-- ══ BOTTOM BAR — Back button ══════════════════════════ -->
+        <HBox alignment="CENTER_LEFT" minHeight="60.0"
+              style="-fx-background-color: #00000099;">
+            <padding><Insets left="30" top="10" bottom="10"/></padding>
+            <Button text="← Back to Menu"
+                    styleClass="btn-back"
+                    onAction="#onBackToMenu"/>
+        </HBox>
+
+    </VBox>
+
 </StackPane>

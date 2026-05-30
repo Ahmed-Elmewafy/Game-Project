@@ -74,12 +74,18 @@ public class Game {
 		return rand.nextInt(6) + 1;
 	}
 	
+	private int lastRoll;
+	
+	public int getLastRoll() {
+		return lastRoll;
+	}
+	
 	public void usePowerup() throws OutOfEnergyException {
 		if (current.getEnergy() < Constants.POWERUP_COST)
 			throw new OutOfEnergyException("Not enough energy to use powerup");
 		
 		current.executePowerupEffect(getCurrentOpponent());
-		current.setEnergy(current.getEnergy() - Constants.POWERUP_COST);
+		current.deductFlatCost(Constants.POWERUP_COST);
 	}
 	
 	public void playTurn() throws InvalidMoveException {
@@ -91,6 +97,7 @@ public class Game {
 		}
 		
 		int roll = rollDice();
+		this.lastRoll = roll;
 		
 		board.moveMonster(current, roll, getCurrentOpponent());
 		
